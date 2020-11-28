@@ -1,15 +1,10 @@
-module counter #(parameter N = 8)
+module counter #(parameter WIDTH = 8)
 (
-  input  logic         clk  ,
-  input  logic         rst  ,
-  input  logic         incr ,
-  output logic [N-1:0] count
+  input  logic clk, rst, incr,
+  output logic [WIDTH-1:0] count_reg
 );
   always_ff @(posedge clk) begin
-
-    if      (rst ) count <= 0           ;
-    else if (incr) count <= count + 1'b1;
-    else           count <= count       ;
-
+    if      (rst)  count_reg <= 0;
+    else if (incr) count_reg <= count_reg + 1'b1;
   end
 endmodule

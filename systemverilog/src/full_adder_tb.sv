@@ -4,8 +4,12 @@ module full_adder_tb ();
   timeprecision 1ps;
 
   localparam CLK_PERIOD = 10;
+  logic clk;
+  initial begin
+    clk = 0;
+    forever #(CLK_PERIOD/2) clk <= ~clk;
+  end
 
-  logic clk   = 0;
   logic a     = 0;
   logic b     ; // = 0, intentional
   logic c_in  = 0;
@@ -14,12 +18,6 @@ module full_adder_tb ();
 
   full_adder fa (.*);
 
-  initial begin
-    forever begin
-      #(CLK_PERIOD/2);
-      clk <= ~clk;
-    end
-  end
 
   initial begin
     // Simulation starts

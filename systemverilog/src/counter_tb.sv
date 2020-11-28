@@ -1,28 +1,24 @@
 module counter_tb();
   
-  timeunit    1ns;
+  timeunit 1ns;
   timeprecision 1ps;
 
-  logic             clk =  0;
+  logic clk;
   localparam CLK_PERIOD = 10;
   initial begin
-    forever begin
-      #(CLK_PERIOD/2);
-      clk <= ~clk;
-    end
+    clk = 0;
+    forever #(CLK_PERIOD/2) clk <= ~clk;
   end
 
-  localparam N = 8;
+  localparam WIDTH = 8;
 
-  logic         rst  ;
-  logic         incr ;
-  logic [N-1:0] count;
+  logic rst, incr;
+  logic [WIDTH-1:0] count_reg;
 
-  counter #(.N(N)) dut (.*);
+  counter #(.WIDTH(WIDTH)) dut (.*);
 
   initial begin
     #(CLK_PERIOD * 2);
-
     @(posedge clk);
     rst <= 1;
 
@@ -40,6 +36,7 @@ module counter_tb();
 
     #(CLK_PERIOD * 4);
     @(posedge clk);
-    rst  <= 1;
+    rst <= 1;
   end
+
 endmodule
