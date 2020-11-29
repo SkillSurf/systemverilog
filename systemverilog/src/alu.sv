@@ -1,5 +1,5 @@
 module alu #(
-  parameter WIDTH
+  parameter WIDTH = 8
 )(
   input  logic [2:0] sel,
   input  logic signed [WIDTH-1:0] A,
