@@ -12,7 +12,7 @@ for i in range(6):
     s1 = s1 + 1
     print(s1)
 
-s2 = 0
+s2 = 255
 for i in range(6):
-    s2 = s2 + 1
+    s2 = s2 - 1
     print(s2)
