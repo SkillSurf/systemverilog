@@ -1,3 +1,5 @@
+`timescale 1ns/1ps
+
 module counter #(parameter WIDTH = 8)
 (
   input  logic clk, rst, incr,
