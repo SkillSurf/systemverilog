@@ -3,12 +3,6 @@
 class Matrix #(W=8, R=8, C=8);
   typedef logic signed [R-1:0][C-1:0][W-1:0] m_t;
   rand m_t data;
-
-//  constraint c {
-//    foreach (data[r,c]) 
-//      {data[r][c] > -10 && data[r][c]<10; 
-//      }
-//  }
   
   function new();
     data = '0;
