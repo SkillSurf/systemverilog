@@ -7,9 +7,9 @@ module matvec_mul #(
                W_Y = W_M + DEPTH
   )(  
     input  logic clk,
-    input  logic signed [R-1:0][C-1:0][W_K -1:0] k,
-    input  logic signed        [C-1:0][W_X -1:0] x, 
-    output logic signed        [R-1:0][W_Y -1:0] y
+    input  logic signed [R-1:0][C-1:0][W_K-1:0] k,
+    input  logic signed        [C-1:0][W_X-1:0] x, 
+    output logic signed        [R-1:0][W_Y-1:0] y
   );
 
   logic signed [W_Y-1:0] tree [DEPTH+1][R][C]; // adder tree
