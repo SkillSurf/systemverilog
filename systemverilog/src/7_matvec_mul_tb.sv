@@ -69,17 +69,19 @@ module matvec_mul_tb;
   wire signed [W_Y -1:0] y_exp_up    [R-1:0] = {>>{y_exp}};
 
   initial begin
-    $dumpfile("dump.vcd"); $dumpvars(0, dut);
+    $dumpfile("dump.vcd"); $dumpvars;
   end
 
   task drive_wait_assert;
     #1 k = km.data; xmt.data = xm.transpose(); x = xmt.data;
 
     repeat(LATENCY)@(posedge clk);
-    #1  y_exp = Matmul#(W_K, W_X, R, C, 1)::matmul(km.data, xm.data);
-        assert (y==y_exp) $display("%p", y); else $error("y_dut:%d != y_exp:%d", y, y_exp);
+    #1  y_exp = Matmul#(W_K,W_X,R,C,1)::matmul(km.data, xm.data);
+    assert (y==y_exp) $display("%p", y_up); else $error("y_dut:%d != y_exp:%d", y, y_exp);
 
   endtask
+  
+  int status;
 
   initial begin
     @(posedge clk);
@@ -104,8 +106,8 @@ module matvec_mul_tb;
 
     repeat(20) begin
       @(posedge clk);
-      km.randomize();
-      xm.randomize();
+      status = km.randomize();
+      status = xm.randomize();
       drive_wait_assert;
     end
 
