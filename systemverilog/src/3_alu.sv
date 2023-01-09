@@ -1,8 +1,8 @@
 `timescale 1ns/1ps
 
 module alu #(
-  parameter WIDTH     = 8,
-            W_ALU_SEL = 3
+  parameter  WIDTH     = 8,
+  localparam W_ALU_SEL = 3
 )(
   input  logic signed [WIDTH-1:0] bus_a,
   input  logic signed [WIDTH-1:0] bus_b,

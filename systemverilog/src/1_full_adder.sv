@@ -1,3 +1,5 @@
+`timescale 1ns/1ps
+
 /*
   This code describes a full_adder circuit
 */

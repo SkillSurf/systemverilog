@@ -16,7 +16,7 @@ module example_tb;
   
   initial begin
     $dumpfile("dump.vcd"); 
-    $dumpvars(0, dut);
+    $dumpvars;
     @(posedge clk);
     #1 a <= 1; b <= 1;
     @(posedge clk);

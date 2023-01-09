@@ -7,7 +7,7 @@ module full_adder_tb;
   full_adder dut (.*);
 
   initial begin // simulation starts
-    $dumpfile("dump.vcd"); $dumpvars(0, dut);
+    $dumpfile("dump.vcd"); $dumpvars;
 
     #30 a <= 0; b <= 0; ci <= 0;    
     #10 a <= 0; b <= 0; ci <= 1;
