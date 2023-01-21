@@ -2,7 +2,8 @@ module example_tb;
   timeunit      1ns;
   timeprecision 1ps;
 
-  wire clk, a,b,c;
+  reg clk, a,b;
+  wire c;
   wire [3-1:0] s1,s2;
   example dut (.*);
 

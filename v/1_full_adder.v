@@ -5,18 +5,18 @@
 */
 module full_adder 
 (
-  input  logic a, b, ci,
-  output logic sum, co
+  input  a, b, ci,
+  output sum, co
 );
 
-  logic wire_1, wire_2;
+  wire wire_1, wire_2;
 
   assign wire_1 = a ^ b;       // bitwise XOR
   assign wire_2 = wire_1 & ci; // bitwise AND
   
   wire   wire_3 = a & b;       // bitwise AND
 
-  always_comb begin
+  always @(*)  begin
     co  = wire_2 | wire_3;     // bitwise OR
     sum    = wire_1 ^ ci  ;    // bitwise XOR
   end
