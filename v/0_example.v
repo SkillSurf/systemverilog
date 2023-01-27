@@ -2,7 +2,7 @@
 module example (
     input   clk,a,b,
     output  c,
-  output reg   [3-1:0] s1=0, //TODO: also works without reg
+    output reg   [3-1:0] s1=0, //TODO: also works without reg
     output reg [3-1:0] s2=7
   );
   
