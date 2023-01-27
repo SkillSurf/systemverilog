@@ -5,8 +5,8 @@ module counter_tb;
   timeunit 1ns/1ps;
   localparam WIDTH = 8;
 
-  logic clk=0, rst, incr;
-  logic [WIDTH-1:0] count_reg;
+  reg clk=0, rst, incr;
+  wire [WIDTH-1:0] count_reg;
 
   counter #(.WIDTH(WIDTH)) dut (.*);
   
