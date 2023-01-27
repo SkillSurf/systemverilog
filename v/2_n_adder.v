@@ -1,12 +1,12 @@
 module n_adder #(
   parameter N=4
 )(
-  input  logic signed [N-1:0] A, B,
-  input  logic ci,
-  output logic signed [N-1:0] S,
-  output logic co
+  input  signed [N-1:0] A, B,
+  input  ci,
+  output signed [N-1:0] S,
+  output co
 );
-  logic C [N:0];
+  wire C [N:0];
   assign C[0] = ci;
   assign co = C[N];
 

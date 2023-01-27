@@ -4,8 +4,10 @@ module n_adder_tb;
   
   localparam N = 8;
 
-  logic signed [N-1:0] A, B, S;
-  logic ci, co;
+  reg   signed [N-1:0] A, B;
+  wire  signed [N-1:0] S;
+  reg   ci;
+  wire  co;
   
   bit [N-1:0] m;
 
@@ -23,9 +25,9 @@ module n_adder_tb;
 
     repeat(10) begin
       #9
-      std::randomize(ci);
-      std::randomize(A) with { A inside {[-128:127]}; };
-      std::randomize(B) with { B inside {[-128:127]}; };
+      ci = $urandom%2
+      A  = $random%128
+      B  = $random%128
       #1
       assert ({co,S} == A+B+ci)
         else $error("%d+%d+%d != {%d,%d}", A,B,ci,co,S);
