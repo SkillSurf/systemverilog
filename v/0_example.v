@@ -1,4 +1,3 @@
-// Code your design here
 module example (
     input   clk,a,b,
     output  c,
