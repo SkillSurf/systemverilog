@@ -2,17 +2,16 @@ module p2s_tb;
   timeunit       1ns;
   timeprecision  1ps;
 
-  logic clk = 0, rstn = 0;
+  reg clk = 0, rstn = 0;
   localparam CLK_PERIOD = 10;
   initial forever 
     #(CLK_PERIOD/2) 
     clk <= ~clk;
 
   parameter N = 8;
-  logic [N-1:0] p_data;
-  logic p_valid, p_ready, 
-        s_data, s_valid, 
-        s_ready;
+  reg [N-1:0] p_data;
+  reg p_valid, s_ready;
+  wire p_ready, s_data, s_valid;
 
   p2s #(.N(N)) dut (.*);
 
