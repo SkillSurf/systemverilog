@@ -5,14 +5,14 @@ module fir_filter_tb;
              N = 3,
              WIDTH_Y = WIDTH_X + WIDTH_B + N + 1;
 
-  localparam logic [WIDTH_B-1:0] B [N+1] = {1, 2, 3, 4};
+  localparam [WIDTH_B*(N+1)-1:0] B = {4'd1, 4'd2, 4'd3, 4'd4};
 
-  logic clk=0, rstn=0;
+  reg clk=0, rstn=0;
   localparam CLK_PERIOD = 10;
   initial forever #(CLK_PERIOD/2) clk <= ~clk;
 
-  logic signed [WIDTH_X-1:0] x=0;
-  logic signed [WIDTH_Y-1:0] y;
+  reg signed [WIDTH_X-1:0] x=0;
+  wire signed [WIDTH_Y-1:0] y;
 
   fir_filter #(
     .N (N),
