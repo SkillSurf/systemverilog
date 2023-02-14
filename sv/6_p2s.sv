@@ -5,7 +5,7 @@ module p2s #(N = 8)
   output logic p_ready, s_data, s_valid
 );
   localparam N_BITS = $clog2(N);
-  enum logic {RX=1, TX=1} next_state, state; //= RX;
+  enum logic {RX=0, TX=1} next_state, state; //= RX;
   logic [N_BITS-1:0] count; // = 0; // Initial values when FPGA powers up
   logic [N     -1:0] shift_reg;
 
@@ -27,7 +27,10 @@ module p2s #(N = 8)
     if (!rstn) count    <= '0;
     else 
       unique case (state)
-        RX:   shift_reg <= p_data;
+        RX: begin  
+              shift_reg <= p_data;
+              count     <= '0;
+            end
         TX: if (s_ready) begin
               shift_reg <= shift_reg >> 1;
               count     <= count + 1'd1;
