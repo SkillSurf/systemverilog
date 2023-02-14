@@ -1,6 +1,6 @@
-set top_module fir_filter
+set top_module matvec_mul
 set rtlPath "../../sv/"
-exec mkdir -p log
+exec mkdir -p log netlist
 
 # Target library
 set target_library /home/linux/ieng6/ee260bwi23/public/PDKdata/db/tcbn65gpluswc.db 
@@ -19,10 +19,10 @@ remove_design -all
 define_design_lib WORK -path .template
 
 # read RTL
-analyze -format sverilog -lib WORK [glob ${rtlPath}*_${top_module}.sv]
-
-elaborate $top_module -lib WORK -update
+analyze -format sverilog [glob ${rtlPath}*_${top_module}.sv]
+elaborate $top_module
 current_design $top_module
+check_design > log/${top_module}_check.rep
 
 # Link Design
 link
@@ -69,13 +69,13 @@ compile_ultra -no_autoungroup -timing_high_effort_script -exact_map
 # Write Out Design - Hierarchical
 current_design $top_module
 change_names -rules verilog -hierarchy
-write -format verilog -hier -output ${top_module}.out.v
+write -format verilog -hier -output netlist/${top_module}.out.v
 
 # Write Reports
-redirect "log/${top_module}_area.rep" {report_area}
-redirect -append "log/${top_module}_area.rep" {report_reference}
-redirect "log/${top_module}_power.rep" {report_power}
-redirect "log/${top_module}_timing.rep" {report_timing -path full -max_paths 100 -nets -transition_time -capacitance -significant_digits 3 -nosplit}
+report_area > log/${top_module}_area.rep
+report_reference > log/${top_module}_area_reference.rep
+report_power > log/${top_module}_power.rep
+report_timing -path full -max_paths 100 -nets -transition_time -capacitance -significant_digits 3 -nosplit >  log/${top_module}_timing.rep
 
 
 set unmapped_designs [get_designs -filter "is_unmapped == true" $top_module]

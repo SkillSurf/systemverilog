@@ -23,7 +23,7 @@ module matvec_mul #(
     for (d=0; d<DEPTH; d=d+1)
       for (a=0; a<C/2**(d+1); a=a+1)
         always_ff @(posedge clk)  // register after each add
-          tree [d+1][r][a] <= tree [d][r][2*a] + tree[d][r][2*a+1]; 
+          tree [d+1][r][a] <= tree [d][r][2*a] + tree[d][r][2*a+1];
 
     assign y[r] = tree[DEPTH][r][0];
   end
