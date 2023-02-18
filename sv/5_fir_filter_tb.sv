@@ -3,7 +3,7 @@ module fir_filter_tb;
   localparam W_X = 4,
              W_K = 4,
              N = 3,
-             W_Y = W_X + W_K + N + 1;
+             W_Y = W_X + W_K + $clog2(N);
 
   localparam logic signed [W_K-1:0] K [N+1] = {1, 1, 1, 1};
 
@@ -13,14 +13,7 @@ module fir_filter_tb;
 
   logic signed [W_X-1:0] x=0;
   logic signed [W_Y-1:0] y;
-
-  fir_filter #(
-    .N   (N),
-    .W_X (W_X),
-    .W_K (W_K),
-    .K   (K)
-  ) dut (.*);
-
+  fir_filter #(.N(N), .W_X(W_X), .W_K (W_K), .K(K)) dut (.*);
 
   logic signed [W_X-1:0] zi [N+1] = '{default:0};
   logic signed [W_X-1:0] zq [$] = zi;
@@ -39,7 +32,7 @@ module fir_filter_tb;
       @(posedge clk) #1 status = $fscanf(file_x,"%d\r", x);
     $fclose(file_x);
 
-    repeat (N+1) @(negedge clk);
+    repeat (N+1) @(posedge clk);
     $fclose(file_y);
     $finish();
   end
