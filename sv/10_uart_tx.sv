@@ -18,7 +18,7 @@ module uart_tx #(
 
     s_packets = '1;
     for (int i=0; i<NUM_WORDS; i=i+1)
-      s_packets[i][BITS_PER_WORD:0] = {~s_data[i], 1'b0};
+      s_packets[i][BITS_PER_WORD:0] = {s_data[i], 1'b0};
     
     tx = m_packets[0];
   end

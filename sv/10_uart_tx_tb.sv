@@ -59,7 +59,7 @@ module uart_tx_tb;
       for (int ib=0; ib<BITS_PER_WORD; ib=ib+1) begin
         // go to middle of data bit
         repeat (CLOCKS_PER_PULSE) @(posedge clk);
-        rx_data[iw][ib] = !tx;
+        rx_data[iw][ib] = tx;
         sample = !sample;
       end
 

@@ -29,7 +29,7 @@ module uart_rx_tb;
       data = $urandom();
 
       for (int iw=0; iw<NUM_WORDS; iw=iw+1) begin
-        packet = {1'b1, ~data[iw], 1'b0};
+        packet = {1'b1, data[iw], 1'b0};
 
         repeat ($urandom_range(1,20)) @(posedge clk);
 

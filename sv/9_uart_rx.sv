@@ -1,7 +1,7 @@
 module uart_rx #(
   parameter CLOCKS_PER_PULSE = 4, //200_000_000/9600
             BITS_PER_WORD    = 8,
-            W_OUT = 24 //R*C*W_K + C*W_X
+            W_OUT = 24 //R*C*W_K + C*W_X,
 )(
   input  logic clk, rstn, rx,
   output logic m_valid,
@@ -40,7 +40,7 @@ module uart_rx #(
 
         DATA :  if (c_clocks == CLOCKS_PER_PULSE-1) begin
                   c_clocks <= 0;
-                  m_data   <= {!rx, m_data[W_OUT-1:1]};
+                  m_data   <= {rx, m_data[W_OUT-1:1]};
 
                   if (c_bits == BITS_PER_WORD-1) begin
                     state  <= END;

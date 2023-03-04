@@ -10,7 +10,7 @@ module p2s_tb;
 
   parameter N = 8;
   logic [N-1:0] p_data;
-  logic p_valid, p_ready, 
+  logic p_valid=0, p_ready, 
         s_data, s_valid, 
         s_ready;
 
