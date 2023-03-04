@@ -58,7 +58,7 @@ module function_lut #(
 
   // LUT usage
 
-  assign yf  = lut_factorial[xf ];
+  assign yf  = lut_factorial[xf];
   assign xiq = lut_inverse_quadratic[yiq];
 
   assign yq_lut  = lut_quadratic[xq];
