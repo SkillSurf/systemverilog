@@ -1,4 +1,4 @@
-set top_module matvec_mul
+set top_module uart_tx
 set rtlPath "../../sv/"
 exec mkdir -p log netlist
 
