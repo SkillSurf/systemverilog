@@ -1,5 +1,3 @@
-`timescale 1ns/1ps
-
 class Matrix #(W=8, R=8, C=8);
   typedef logic signed [R-1:0][C-1:0][W-1:0] m_t;
   rand m_t data;
@@ -28,11 +26,11 @@ endclass
 
 module matvec_mul_tb;
 
-  logic clk=0;
+  logic clk=0, cen=1;
   localparam CLK_PERIOD = 10;
   initial forever #(CLK_PERIOD/2) clk <= ~clk;
 
-  localparam R=2, C=2, W_X=3, W_K=4;
+  localparam R=1, C=8, W_X=3, W_K=4;
   localparam DEPTH = $clog2(C),
              W_Y = W_X + W_K + DEPTH,
              LATENCY = DEPTH + 1;
