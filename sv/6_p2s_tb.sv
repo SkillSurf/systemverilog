@@ -9,10 +9,10 @@ module p2s_tb;
     clk <= ~clk;
 
   parameter N = 8;
-  logic [N-1:0] p_data;
-  logic p_valid=0, p_ready, 
-        s_data, s_valid, 
-        s_ready;
+  logic [N-1:0] par_data;
+  logic par_valid=0, par_ready, 
+        ser_data, ser_valid, 
+        ser_ready;
 
   p2s #(.N(N)) dut (.*);
 
@@ -20,18 +20,18 @@ module p2s_tb;
     $dumpfile("dump.vcd"); $dumpvars;
     
     @(posedge clk)  #1  rstn <= 1;
-    @(posedge clk)  #1  p_data  <= 8'd7 ; p_valid <= 0; s_ready <= 1;    
+    @(posedge clk)  #1  par_data  <= 8'd7 ; par_valid <= 0; ser_ready <= 1;    
     #(CLK_PERIOD*3)
-    @(posedge clk)  #1  p_data  <= 8'd62; p_valid <= 1;
-    @(posedge clk)  #1  p_valid <= 0;
+    @(posedge clk)  #1  par_data  <= 8'd62; par_valid <= 1;
+    @(posedge clk)  #1  par_valid <= 0;
     #(CLK_PERIOD*10)
-    @(posedge clk)  #1  p_data  <= 8'd52; p_valid <= 1;
-    @(posedge clk)  #1  p_valid <= 0; 
-    @(posedge clk)  #1  s_ready <= 0;
+    @(posedge clk)  #1  par_data  <= 8'd52; par_valid <= 1;
+    @(posedge clk)  #1  par_valid <= 0; 
+    @(posedge clk)  #1  ser_ready <= 0;
     #(CLK_PERIOD*3)
-    @(posedge clk)  #1  s_ready <= 1;
+    @(posedge clk)  #1  ser_ready <= 1;
     #(CLK_PERIOD*10)
-    @(posedge clk)  #1  s_ready <= 0;
+    @(posedge clk)  #1  ser_ready <= 0;
     $finish();
   end
 endmodule

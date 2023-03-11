@@ -1,8 +1,8 @@
 module p2s #(N = 8)
 (
-  input  logic clk, rstn, s_ready, p_valid, 
-  input  logic [N-1:0] p_data,
-  output logic p_ready, s_data, s_valid
+  input  logic clk, rstn, ser_ready, par_valid, 
+  input  logic [N-1:0] par_data,
+  output logic par_ready, ser_data, ser_valid
 );
   localparam N_BITS = $clog2(N);
   enum logic {RX=0, TX=1} next_state, state; //= RX;
@@ -11,27 +11,26 @@ module p2s #(N = 8)
 
   always_comb
     unique case (state)
-      RX: next_state = p_valid               ? TX : RX;
-      TX: next_state = s_ready && count==N-1 ? RX : TX;
+      RX: next_state = par_valid               ? TX : RX;
+      TX: next_state = ser_ready && count==N-1 ? RX : TX;
     endcase
 
   always_ff @(posedge clk or negedge rstn)
-    if (!rstn) state <= RX;
-    else       state <= next_state;
+    state <= !rstn ? RX : next_state;
 
-  assign s_data  = shift_reg[0];
-  assign p_ready = (state == RX);
-  assign s_valid = (state == TX);
+  assign ser_data  = shift_reg[0];
+  assign par_ready = (state == RX);
+  assign ser_valid = (state == TX);
 
   always_ff @(posedge clk or negedge rstn)
     if (!rstn) count    <= '0;
     else 
       unique case (state)
         RX: begin  
-              shift_reg <= p_data;
+              shift_reg <= par_data;
               count     <= '0;
             end
-        TX: if (s_ready) begin
+        TX: if (ser_ready) begin
               shift_reg <= shift_reg >> 1;
               count     <= count + 1'd1;
             end 
