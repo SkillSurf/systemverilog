@@ -1,5 +1,3 @@
-`timescale 1ns/1ps
-
 module counter_tb;
   
   timeunit 1ns/1ps;

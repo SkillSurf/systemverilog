@@ -1,5 +1,3 @@
-`timescale 1ns/1ps
-
 class Random_Num #(WIDTH=8);
   rand bit signed [WIDTH-1:0] num;
 endclass

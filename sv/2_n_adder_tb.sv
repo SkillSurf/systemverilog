@@ -8,6 +8,7 @@ module n_adder_tb;
   logic ci, co;
   
   bit [N-1:0] m;
+  int status;
 
   n_adder #(.N(N)) dut (.*);
 
@@ -15,7 +16,7 @@ module n_adder_tb;
     $dumpfile("dump.vcd"); $dumpvars(0, dut);
     
     A <= 8'd5; B <= 8'd10; ci <= 0;
-    assert (co == 8'd20) else $error("Fail");
+    #1 assert (S == 8'd15) else $error("Fail");
 
     #10 A <= 8'd30;  B <= -8'd10; ci <= 0;
     #10 A <= 8'd5;   B <= 8'd10;  ci <= 1;
@@ -23,9 +24,9 @@ module n_adder_tb;
 
     repeat(10) begin
       #9
-      std::randomize(ci);
-      std::randomize(A) with { A inside {[-128:127]}; };
-      std::randomize(B) with { B inside {[-128:127]}; };
+      status = std::randomize(ci);
+      status = std::randomize(A) with { A inside {[-128:127]}; };
+      status = std::randomize(B) with { B inside {[-128:127]}; };
       #1
       assert ({co,S} == A+B+ci)
         else $error("%d+%d+%d != {%d,%d}", A,B,ci,co,S);
