@@ -19,7 +19,7 @@ remove_design -all
 define_design_lib WORK -path .template
 
 # read RTL
-analyze -format sverilog [glob ${rtlPath}*_${top_module}.sv]
+analyze -format sverilog [glob ${rtlPath}${top_module}.sv]
 elaborate $top_module
 current_design $top_module
 check_design > log/${top_module}_check.rep
