@@ -2,13 +2,15 @@
 
 module counter_tb;
   
-  timeunit 1ns/1ps;
   localparam WIDTH = 8;
 
   reg clk=0, rst, incr;
   wire [WIDTH-1:0] count_reg;
 
-  counter #(.WIDTH(WIDTH)) dut (.*);
+  counter #(.WIDTH(WIDTH)) dut (.clk(clk),
+                                .rst(rst),
+                                .incr(incr),
+                                .count_reg(count_reg));
   
   localparam CLK_PERIOD = 10;
   initial forever #(CLK_PERIOD/2) clk <= ~clk;
@@ -31,6 +33,8 @@ module counter_tb;
 
     repeat(4) @(posedge clk);
     #1 rst  <= 1;
+    
+    repeat(2) @(posedge clk);
     
     $finish();
   end
