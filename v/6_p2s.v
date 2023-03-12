@@ -6,7 +6,7 @@ module p2s #(N = 8)
 );
   localparam N_BITS = $clog2(N);
   localparam RX = 0;
-  localparam TX =1;
+  localparam TX = 1;
   reg next_state, state;
   reg [N_BITS-1:0] count; // = 0; // Initial values when FPGA powers up
   reg [N     -1:0] shift_reg;
@@ -30,7 +30,7 @@ module p2s #(N = 8)
   always @(posedge clk or negedge rstn) begin
     if (!rstn) count    <= 0;
     else 
-      unique case (state)
+      case (state)
         RX:   shift_reg <= p_data;
         TX: if (s_ready) begin
               shift_reg <= shift_reg >> 1;
