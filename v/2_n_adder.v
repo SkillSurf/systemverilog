@@ -6,6 +6,7 @@ module n_adder #(
   output signed [N-1:0] S,
   output co
 );
+
   wire C [N:0];
   assign C[0] = ci;
   assign co = C[N];
@@ -21,4 +22,5 @@ module n_adder #(
       .sum  (S[i  ])
     );
   end
+
 endmodule

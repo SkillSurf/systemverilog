@@ -6,7 +6,7 @@
 module full_adder 
 (
   input  a, b, ci,
-  output sum, co
+  output reg sum, co
 );
 
   wire wire_1, wire_2;
