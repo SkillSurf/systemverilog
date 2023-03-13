@@ -38,7 +38,8 @@ module fir_filter_tb;
   // Monitor signals
   initial forever begin
       @(posedge clk) #2
-      zq = {x,zq}; zq = zq[0:$-1];
+      zq.push_front(x);
+      zq.pop_back();
       
       y_exp = 0;
       foreach (zq[i]) 
