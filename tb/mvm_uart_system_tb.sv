@@ -95,7 +95,7 @@ module mvm_uart_system_tb;
       end
 
       // Compare
-      assert (exp_data == m_data+1)
+      assert (exp_data == m_data)
         $display("Outputs match: %d", exp_data);
       else $fatal(0, "Expected: %d != Output: %d", exp_data, m_data);
     end
