@@ -1,6 +1,7 @@
 /* This example is not tested. 
 It is a simplified version from our first processor*/
 
+// synthesis translate_off
 
 `include "define.v"
 `include "opcode_define.v"
@@ -534,3 +535,5 @@ always_comb begin
 	endcase
 end
 endmodule
+
+// synthesis translate_on

@@ -1,15 +1,14 @@
-set top_module uart_tx
-set rtlPath "../../sv/"
+set top_module mvm_uart_system
+set rtlPath "../../rtl/"
 exec mkdir -p log netlist
 
 # Target library
-set target_library  
+set target_library 
 set link_library $target_library
 
 #Compiler directives
 set compile_effort "low"
 set compile_no_new_cells_at_top_level false
-set hdlin_enable_vpp true
 set hdlin_auto_save_templates false
 set wire_load_mode enclosed
 set timing_use_enhanced_capacitance_modeling true
@@ -19,7 +18,8 @@ remove_design -all
 define_design_lib WORK -path .template
 
 # read RTL
-analyze -format sverilog [glob ${rtlPath}${top_module}.sv]
+analyze -format sverilog [glob ${rtlPath}*.sv]
+analyze -format verilog [glob ${rtlPath}*.v]
 elaborate $top_module
 current_design $top_module
 check_design > log/${top_module}_check.rep
@@ -28,9 +28,9 @@ check_design > log/${top_module}_check.rep
 link
 
 # Default SDC Constraints (can be an sdc file)
-set clock_cycle 1.6
+set clock_period 0.7
 set io_delay 0.2 
-create_clock -name clk -period $clock_cycle [get_ports clk]
+create_clock -name clk -period $clock_period [get_ports clk]
 set_input_delay -clock [get_clocks clk] -add_delay -max $io_delay [all_inputs]
 set_output_delay -clock [get_clocks clk] -add_delay -max $io_delay [all_outputs]
 # set_input_delay -clock [get_clocks clk] -add_delay -max $io_delay [get_ports {key[52]}]
