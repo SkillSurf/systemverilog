@@ -10,18 +10,15 @@ module uart_tx #(
   input  logic [NUM_WORDS-1:0][BITS_PER_WORD-1:0] s_data,
   output logic tx, s_ready
 );  
-
+  localparam END_BITS = PACKET_SIZE-BITS_PER_WORD-1;
   logic [NUM_WORDS-1:0][PACKET_SIZE-1:0] s_packets;
   logic [NUM_WORDS*PACKET_SIZE     -1:0] m_packets;
 
-  always_comb begin
-
-    s_packets = '1;
-    for (int i=0; i<NUM_WORDS; i=i+1)
-      s_packets[i][BITS_PER_WORD:0] = {s_data[i], 1'b0};
+  genvar n;
+  for (n=0; n<NUM_WORDS; n=n+1)
+    assign s_packets[n] = { ~(END_BITS'(0)), s_data[n], 1'b0};
     
-    tx = m_packets[0];
-  end
+  assign tx = m_packets[0];
 
   // Counters
   logic [$clog2(NUM_WORDS*PACKET_SIZE)-1:0] c_pulses;
