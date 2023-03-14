@@ -4,7 +4,7 @@ name: Verify
 on: [push]
 
 jobs:
-  build-linux:
+  verify-with-icarus:
     runs-on: ubuntu-latest
 
     steps:
@@ -14,7 +14,19 @@ jobs:
       run: |
         sudo apt install -y --no-install-recommends iverilog
 
-    - name: Verify with Icarus
+    - name: Verify UART RX & TX
+      run: |
+        iverilog -g2012 -o compiled rtl/uart_rx.sv tb/uart_rx_tb.sv
+        vvp compiled
+        iverilog -g2012 -o compiled rtl/uart_tx.sv tb/uart_tx_tb.sv
+        vvp compiled
+        
+    - name: Verify AXI Stream MVM
+      run: |
+        iverilog -g2012 -o compiled rtl/axis_matvec_mul.v rtl/matvec_mul.sv rtl/skid_buffer.sv tb/axis_matvec_mul_tb.sv tb/simple_axis_tb.sv
+        vvp compiled
+
+    - name: Verify Full System
       run: |
         iverilog -g2012 -o compiled rtl/mvm_uart_system.v rtl/uart_rx.sv rtl/uart_tx.sv rtl/axis_matvec_mul.v rtl/matvec_mul.sv rtl/skid_buffer.sv tb/mvm_uart_system_tb.sv tb/simple_axis_tb.sv
         vvp compiled
