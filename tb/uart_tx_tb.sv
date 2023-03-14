@@ -10,6 +10,7 @@ module uart_tx_tb;
 
   logic clk=0, baud=0, rstn=0, tx, s_valid=0, s_ready;
   logic [NUM_WORDS-1:0][BITS_PER_WORD-1:0] s_data, rx_data;
+  logic [BITS_PER_WORD-1:0] rx_word;
 
   initial forever #(CLK_PERIOD/2) clk <= !clk;
 
@@ -42,7 +43,6 @@ module uart_tx_tb;
     $finish();
   end
 
-  logic sample=1;
 
   // Monitor
   initial forever begin
@@ -50,28 +50,33 @@ module uart_tx_tb;
     for (int iw=0; iw<NUM_WORDS; iw=iw+1) begin
 
       wait(!tx);
-      
-      sample = 0;
-      // go to middle of start bit
-      repeat (CLOCKS_PER_PULSE/2) @(posedge clk);
-      sample = !sample;
+      repeat (CLOCKS_PER_PULSE/2) @(posedge clk); // go to middle of start bit
 
-      for (int ib=0; ib<BITS_PER_WORD; ib=ib+1) begin
-        // go to middle of data bit
+      for (int ib=0; ib<BITS_PER_WORD; ib=ib+1) begin // go to middle of data bit
         repeat (CLOCKS_PER_PULSE) @(posedge clk);
-        rx_data[iw][ib] = tx;
-        sample = !sample;
+        rx_word[ib] = tx;
       end
+      rx_data[iw] = rx_word;
 
       for (int ib=0; ib<PACKET_SIZE-BITS_PER_WORD-1; ib=ib+1) begin
         repeat (CLOCKS_PER_PULSE) @(posedge clk);
         assert (tx == 1) else $error("Incorrect end bits/padding");
-        sample = !sample;
       end
     end
 
     assert (rx_data == s_data) $display("OK, %b", rx_data);
     else $error("Sent %b, got %b", s_data, rx_data);
+  end
+
+  // Count UART bits on waveform
+  int bits;
+  initial forever begin
+    bits = 0;
+    wait(!tx);
+    for (int n=0; n<PACKET_SIZE; n++) begin
+      bits += 1;
+      repeat (CLOCKS_PER_PULSE) @(posedge clk);
+    end
   end
 
 endmodule
