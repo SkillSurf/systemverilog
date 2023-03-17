@@ -8,7 +8,7 @@ module uart_tx_tb;
               NUM_WORDS        = W_OUT/BITS_PER_WORD,
               CLK_PERIOD       = 10;
 
-  logic clk=0, baud=0, rstn=0, tx, s_valid=0, s_ready;
+  logic clk=0, rstn=0, tx, s_valid=0, s_ready;
   logic [NUM_WORDS-1:0][BITS_PER_WORD-1:0] s_data, rx_data;
   logic [BITS_PER_WORD-1:0] rx_word;
 

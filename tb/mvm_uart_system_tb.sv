@@ -2,11 +2,12 @@ module mvm_uart_system_tb;
 
   timeunit 1ns/1ps;
   localparam  R=8, C=8, W_X=8, W_K=8,
+              W_Y_OUT          = 32,
               CLOCKS_PER_PULSE = 4, //200_000_000/9600,
               BITS_PER_WORD    = 8,
               W_Y              = W_X + W_K + $clog2(C),
               W_BUS_KX         = R*C*W_K + C*W_X,
-              W_BUS_Y          = R*W_Y,
+              W_BUS_Y          = R*W_Y_OUT,
               N_WORDS_KX       = W_BUS_KX/BITS_PER_WORD,
               N_WORDS_Y        = W_BUS_Y /BITS_PER_WORD,
               PACKET_SIZE_TX   = BITS_PER_WORD+5,
@@ -60,7 +61,7 @@ module mvm_uart_system_tb;
   logic        [C-1:0][W_X-1:0] x_out;
   logic [R-1:0][C-1:0][W_K-1:0] k_out;
   logic        [C-1:0][W_K-1:0] k_row_out;
-  logic        [R-1:0][W_Y-1:0] exp_data;
+  logic        [R-1:0][W_Y_OUT-1:0] exp_data;
   logic [N_WORDS_Y -1:0][BITS_PER_WORD-1:0] m_data;
   logic [BITS_PER_WORD-1  :0] m_packet;
   

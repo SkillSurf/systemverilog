@@ -49,7 +49,7 @@ module AXIS_Source #(
 
   task axis_push_packet;
     // iverilog doesnt support break. so the loop is rolled to have break at top
-    while (!done) begin    // loop goes from (rstn & s_ready) to done
+    while (!done) begin
       if (prev_handshake) begin  // change data
         s_data_val = in_data[i_beats];
         i_beats    += 1;

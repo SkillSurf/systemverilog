@@ -1,5 +1,3 @@
-`timescale 1ns/1ps
-
 module axis_matvec_mul_tb;
   timeunit 1ns/1ps;
   localparam  R=8, C=8, W_X=8, W_K=8,
@@ -50,7 +48,6 @@ module axis_matvec_mul_tb;
       in_data = {k_in, x_in};
 
       queue.push_front(in_data); // append to end of queue
-      #1;
       source.axis_push_packet;
     end
   end

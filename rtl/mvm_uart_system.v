@@ -3,6 +3,7 @@ module mvm_uart_system #(
   parameter CLOCKS_PER_PULSE = 200_000_000/9600, //200_000_000/9600
             BITS_PER_WORD    = 8,
             PACKET_SIZE_TX   = BITS_PER_WORD + 5,
+            W_Y_OUT          = 32,
             R=8, C=8, W_X=4, W_K=3
 )(
   input  clk, rstn, rx,
@@ -10,12 +11,11 @@ module mvm_uart_system #(
 );
 
   localparam  W_BUS_KX = R*C*W_K + C*W_X,
-              W_Y      = W_X + W_K + $clog2(C),
-              W_BUS_Y  = R*W_Y;
+              W_BUS_Y  = R*W_Y_OUT,
+              W_Y      = W_X + W_K + $clog2(C);
 
   wire s_valid, m_valid, s_ready, m_ready;
   wire [W_BUS_KX-1:0] s_data_kx;
-  wire [W_BUS_Y -1:0] m_data_y;
 
   uart_rx #(
     .CLOCKS_PER_PULSE (CLOCKS_PER_PULSE),
@@ -29,6 +29,7 @@ module mvm_uart_system #(
     .m_data (s_data_kx)
   );
 
+  wire [R*W_Y  -1:0] m_data_y;
   axis_matvec_mul #(
     .R(R), .C(C), .W_X(W_X), .W_K(W_K)
   ) AXIS_MVM (
@@ -42,6 +43,19 @@ module mvm_uart_system #(
     .m_axis_y_tdata  (m_data_y )
   );
 
+  // Padding to 32 bits to be read in computer
+  wire [W_Y      -1:0] y_up     [R-1:0];
+  wire [W_Y_OUT  -1:0] o_up   [R-1:0];
+  wire [R*W_Y_OUT-1:0] o_flat;
+
+  genvar r;
+  for (r=0; r<R; r=r+1) begin
+    assign y_up  [r] = m_data_y[W_Y*(r+1)-1 : W_Y*r];
+    assign o_up  [r] = $signed(y_up[r]); // sign extend to 32b
+    assign o_flat[W_Y_OUT*(r+1)-1 : W_Y_OUT*r] = o_up[r];
+    // assign o_flat[W_Y_OUT*(r+1)-1 : W_Y_OUT*r] = $signed(m_data_y[W_Y*(r+1)-1 : W_Y*r]);
+  end
+
   uart_tx #(
    .CLOCKS_PER_PULSE (CLOCKS_PER_PULSE),
    .BITS_PER_WORD    (BITS_PER_WORD),
@@ -52,7 +66,7 @@ module mvm_uart_system #(
    .rstn    (rstn     ), 
    .s_ready (m_ready  ),
    .s_valid (m_valid  ), 
-   .s_data  (m_data_y ),
+   .s_data  (o_flat   ),
    .tx      (tx       )
   );  
 
