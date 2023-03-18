@@ -14,6 +14,15 @@ The examples have been tested on Xilinx Vivado and Synopsys DesignCompiler. Full
     - **`skid_buffer.sv`**: Breaks the combinational path from m_ready to s_ready and "skids" the data into a buffer when `m_ready=0`
   - **`uart_tx.sv`**: Converts output vector `y[R]` from parallel AXI Stream into serial UART output
 
+To synthesize the full system with Synopsys DesignCompiler, first edit `asic_flow/run_dc.tcl` and add the path to PDK next to `target_library`
+
+```
+mkdir asic_flow/syn
+cd asic_flow/syn
+dc_shell -f ../run_dc.tcl
+```
+
+
 #### Testbench:
 
 - **`mvm_uart_system_tb.sv`**: Randomize `k` & `x`, drives TX & monitors RX in parallel, asserts `y_exp==exp`
@@ -99,7 +108,7 @@ Each example introduces digital design concepts and synthesisable (RTL) & non-sy
 - **`simple_axis_tb`**
   - Randomized modules to verify AXI Stream functionality of other modules
   - **Verification:** 
-    - `AXIS_Push` - randomly toggle `s_valid` with given probability and send data. Scramble data on `s_valid=0`
+    - `AXIS_Source` - randomly toggle `s_valid` with given probability and send data. Scramble data on `s_valid=0`
     - `AXIS_Sink` - randomly toggle `m_ready` with given probability and receive data
 - **`skid_buffer`**
   - **Design:** skidding data when `m_ready=0`
