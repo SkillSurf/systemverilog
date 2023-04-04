@@ -8,6 +8,12 @@
 
 #  MODIFY as required
 
+#/* Top-level Module                                  */
+set top_module full_adder
+
+#/* Top-level Module                                  */
+set library_name fa_icc2
+
 set PDKDIR /home/aedc4/libs/tsmc_32nm/SAED32_EDK
 set SAED32_EDK /home/aedc4/libs/tsmc_32nm/SAED32_EDK/lib
 set synopsys /home/aedc4/Apps/syn/T-2022.03-SP5-1
@@ -24,7 +30,7 @@ set_app_options -list {lib.configuration.display_lm_messages {false}}
 #   Create Library
 #----------------------------------------------
 
-create_lib -ref_libs {/home/aedc4/0_SysV_KithminR/ASIC_flow_demo/libs/saed32nm_hvt_1p9m.lef} -technology /home/aedc4/0_SysV_KithminR/ASIC_flow_demo/libs/saed32nm_1p9m_mw.tf fa_icc2
+create_lib -ref_libs {/home/aedc4/0_SysV_KithminR/ASIC_flow_demo/libs/saed32nm_hvt_1p9m.lef} -technology /home/aedc4/0_SysV_KithminR/ASIC_flow_demo/libs/saed32nm_1p9m_mw.tf $library_name
 
 read_parasitic_tech -name {parasitics} -tlup {/home/aedc4/0_SysV_KithminR/ASIC_flow_demo/libs/saed32nm_1p9m_Cmax.tluplus} -layermap {/home/aedc4/0_SysV_KithminR/ASIC_flow_demo/libs/saed32nm_tf_itf_tluplus.map}
 
@@ -32,10 +38,10 @@ read_parasitic_tech -name {parasitics} -tlup {/home/aedc4/0_SysV_KithminR/ASIC_f
 #   Create Block
 #----------------------------------------------
 
-read_verilog -library fa_icc2 -top full_adder ../../output/full_adder.out.v
+read_verilog -library $library_name -top $top_module ../../output/${top_module}.out.v
 link_block
 
-save_block fa_icc2:full_adder
+save_block $library_name:$top_module
 save_lib -all
 
 #------------------------------------------------
@@ -90,11 +96,11 @@ save_lib -all
 
 #clock_opt
 route_auto -max_detail_route_iterations 5
-save_block fa_icc2:full_adder
+save_block $library_name:$top_module
 
 save_lib -all
 
-write_gds -hier all full_adder.gds
+write_gds -hier all ${top_module}.gds
 
 start_gui
 
