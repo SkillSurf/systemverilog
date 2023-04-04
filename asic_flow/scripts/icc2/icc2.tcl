@@ -6,16 +6,13 @@
 #/* SAED EDK 32nm                                  */
 #/**************************************************/
 
+#  MODIFY as required
+
 set PDKDIR /home/aedc4/libs/tsmc_32nm/SAED32_EDK
 set SAED32_EDK /home/aedc4/libs/tsmc_32nm/SAED32_EDK/lib
 set synopsys /home/aedc4/Apps/syn/T-2022.03-SP5-1
-#set synopsys /home/aedc4/synopsys/syn/T-2022.03-SP5-1
 
-set search_path [concat $search_path $SAED32_EDK]
 set search_path [concat $search_path $SAED32_EDK/stdcell_hvt $SAED32_EDK/stdcell_hvt/db_nldm]
-set search_path [concat $search_path ${synopsys}/libraries/syn ${synopsys}/dw/syn_ver ${synopsys}/dw/sim_ver]
-
-set search_path {* /home/aedc4/libs/tsmc_32nm/SAED32_EDK/lib/stdcell_hvt/db_nldm}
 set link_library {* saed32hvt_ss0p7v125c.db}
 set_app_options -list {lib.configuration.default_flow_setup {}};
 set_app_options -list {lib.configuration.output_dir {CLIBs}}
@@ -23,31 +20,35 @@ set_app_options -list {lib.configuration.lef_site_mapping {}}
 set_app_options -list {lib.configuration.process_label_mapping {}}
 set_app_options -list {lib.configuration.display_lm_messages {false}}
 
-#---------------------------------------------
-#   Create Milkyway Database
+#----------------------------------------------
+#   Create Library
 #----------------------------------------------
 
 create_lib -ref_libs {/home/aedc4/0_SysV_KithminR/ASIC_flow_demo/libs/saed32nm_hvt_1p9m.lef} -technology /home/aedc4/0_SysV_KithminR/ASIC_flow_demo/libs/saed32nm_1p9m_mw.tf fa_icc2
 
 read_parasitic_tech -name {parasitics} -tlup {/home/aedc4/0_SysV_KithminR/ASIC_flow_demo/libs/saed32nm_1p9m_Cmax.tluplus} -layermap {/home/aedc4/0_SysV_KithminR/ASIC_flow_demo/libs/saed32nm_tf_itf_tluplus.map}
 
-read_verilog -top full_adder ../../output/full_adder.out.v
+#---------------------------------------------
+#   Create Block
+#----------------------------------------------
 
+read_verilog -library fa_icc2 -top full_adder ../../output/full_adder.out.v
+link_block
+
+save_block fa_icc2:full_adder
 save_lib -all
 
 #------------------------------------------------
 #  Floorplan
 #------------------------------------------------
 
-initialize_floorplan -core_utilization 0.5 -core_offset {5 5 5 5}
+initialize_floorplan -core_utilization 0.5 -core_offset {5}
 
 #------------------------------------------
 #  Power Rings
 # -----------------------------------------
 
 connect_pg_net -automatic -all_blocks
-create_net -power {VDD}
-create_net -ground {VSS}
 
 create_pg_ring_pattern ring_pattern -horizontal_layer M1 \
    -horizontal_width {1.5} -horizontal_spacing {0.5} \
@@ -89,9 +90,11 @@ save_lib -all
 
 #clock_opt
 route_auto -max_detail_route_iterations 5
+save_block fa_icc2:full_adder
 
-save_block -hier -force -label post_route
 save_lib -all
+
+write_gds -hier all full_adder.gds
 
 start_gui
 
