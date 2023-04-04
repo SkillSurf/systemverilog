@@ -20,10 +20,10 @@ set my_clock_pin clk
 set my_clk_freq_MHz 1000   
 
 #/* Delay of input signals (Clock-to-Q, Package etc.)  */
-set my_input_delay_ns 0.1
+set my_input_delay_ns 0.2
 
 #/* Reserved time for output signals (Holdtime etc.)   */
-set my_output_delay_ns 0.1
+set my_output_delay_ns 0.2
 
 # MODIFY as required - aedc4 might need to change
 set PDKDIR /home/aedc4/libs/tsmc_32nm/SAED32_EDK
@@ -56,6 +56,7 @@ define_design_lib WORK -path .template
 
 # read RTL
 analyze -format sverilog [glob ${rtlPath}*.sv] > ../log/1.${top_module}_analyse.log
+#analyze -format verilog [glob ${rtlPath}*.v] > ../log/1.${top_module}_analyse.log
 elaborate $top_module > ../log/2.${top_module}_elaborate.log
 current_design $top_module
 check_design > ../log/3.${top_module}_check_design.rpt
@@ -65,7 +66,7 @@ link
 uniquify
 
 # Default SDC Constraints (can be an sdc file)
-set my_period [expr 1000 / $my_clk_freq_MHz]
+set my_period 0.7
 
 set find_clock [ find port [list $my_clock_pin] ]
 if {  $find_clock != [list] } {
