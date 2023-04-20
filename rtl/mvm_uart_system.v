@@ -1,10 +1,9 @@
-
 module mvm_uart_system #(
   parameter CLOCKS_PER_PULSE = 200_000_000/9600, //200_000_000/9600
             BITS_PER_WORD    = 8,
             PACKET_SIZE_TX   = BITS_PER_WORD + 5,
             W_Y_OUT          = 32,
-            R=8, C=8, W_X=8, W_K=8
+            R=8, C=8, W_X=4, W_K=3
 )(
   input  clk, rstn, rx,
   output tx
@@ -48,13 +47,15 @@ module mvm_uart_system #(
   wire [W_Y_OUT  -1:0] o_up   [R-1:0];
   wire [R*W_Y_OUT-1:0] o_flat;
 
-  genvar r;
-  for (r=0; r<R; r=r+1) begin
-    assign y_up  [r] = m_data_y[W_Y*(r+1)-1 : W_Y*r];
-    assign o_up  [r] = $signed(y_up[r]); // sign extend to 32b
-    assign o_flat[W_Y_OUT*(r+1)-1 : W_Y_OUT*r] = o_up[r];
-    // assign o_flat[W_Y_OUT*(r+1)-1 : W_Y_OUT*r] = $signed(m_data_y[W_Y*(r+1)-1 : W_Y*r]);
-  end
+  integer r;
+  always_comb
+	  for (r=0; r<R; r=r+1) begin
+     // bus splitting can only have a variable at one place (i.e. [x+1:x] not allowed)
+		 y_up  [r] = m_data_y[W_Y*r +: W_Y];
+		 o_up  [r] = $signed(y_up[r]); // sign extend to 32b
+		 o_flat[W_Y_OUT*r +: W_Y_OUT] = o_up[r];
+		 // assign o_flat[W_Y_OUT*(r+1)-1 : W_Y_OUT*r] = $signed(m_data_y[W_Y*(r+1)-1 : W_Y*r]);
+	  end
 
   uart_tx #(
    .CLOCKS_PER_PULSE (CLOCKS_PER_PULSE),
