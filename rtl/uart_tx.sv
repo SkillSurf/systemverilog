@@ -2,21 +2,25 @@ module uart_tx #(
   parameter   CLOCKS_PER_PULSE = 4, //200_000_000/9600
               BITS_PER_WORD    = 8,
               PACKET_SIZE      = BITS_PER_WORD+5,
-              W_OUT = 24, //R*C*W_K + C*W_X
+              W_OUT = 24 //R*C*W_K + C*W_X
   
-  localparam  NUM_WORDS   = W_OUT/BITS_PER_WORD
 )(
   input  logic clk, rstn, s_valid, 
-  input  logic [NUM_WORDS-1:0][BITS_PER_WORD-1:0] s_data,
+  input  logic [(W_OUT/BITS_PER_WORD)-1:0][BITS_PER_WORD-1:0] s_data,
   output logic tx, s_ready
 );  
+	// looks like quartus does not support "locolparam" put before port definition
+  localparam  NUM_WORDS   = W_OUT/BITS_PER_WORD;
   localparam END_BITS = PACKET_SIZE-BITS_PER_WORD-1;
   logic [NUM_WORDS-1:0][PACKET_SIZE-1:0] s_packets;
   logic [NUM_WORDS*PACKET_SIZE     -1:0] m_packets;
 
-  genvar n;
-  for (n=0; n<NUM_WORDS; n=n+1)
-    assign s_packets[n] = { ~(END_BITS'(0)), s_data[n], 1'b0};
+  // quartus didn't let me assign variables when "i" was genvar type 
+  integer n;
+  // quartus does not support for loops outside of procedural(always) blocks
+  always_comb
+	for (n=0; n<NUM_WORDS; n=n+1)
+		s_packets[n] = { ~(END_BITS'(0)), s_data[n], 1'b0};
     
   assign tx = m_packets[0];
 
