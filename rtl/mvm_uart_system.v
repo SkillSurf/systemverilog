@@ -4,7 +4,7 @@ module mvm_uart_system #(
             BITS_PER_WORD    = 8,
             PACKET_SIZE_TX   = BITS_PER_WORD + 5,
             W_Y_OUT          = 32,
-            R=8, C=8, W_X=4, W_K=3
+            R=8, C=8, W_X=8, W_K=8
 )(
   input  clk, rstn, rx,
   output tx
