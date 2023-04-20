@@ -23,8 +23,8 @@ module axis_matvec_mul #(
     ) MATVEC (  
       .clk(clk    ),
       .cen(i_ready),
-      .k  (k      ),
       .x  (x      ), 
+      .k  (k      ),
       .y  (i_data )
     );
 
