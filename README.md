@@ -1,7 +1,31 @@
 # {System}Verilog for ASIC/FPGA Design & Simulation
 
-This repository contains the examples for the course: [SystemVerilog for ASIC/FPGA Design & Simulation](https://www.skillsurf.lk/verilog-for-ASIC-FPGA-design-simulation).
-The examples have been tested on Xilinx Vivado and Synopsys DesignCompiler. Full system, AXI Stream system and their submodules have been tested on Icarus Verilog as well.  
+This repository contains the examples for the short course: [SystemVerilog for ASIC/FPGA Design & Simulation](https://www.skillsurf.lk/verilog-for-ASIC-FPGA-design-simulation). The 64-hour hands-on course was delivered collaborating with Synopsys, teaching 271 participants from 13 countries, through basic (full adder, counter) to advanced (Parameterized AXI-Stream Matrix Multiplier with UART I/O) examples, testing each with randomized transactional testbenches, implementing the final system on FPGA \& testing with Python, and taking it through the ASIC flow with Synopsys tools.
+
+## Feedback from the participants
+
+> Course was well organized in a way for both beginners & intermediate students. Practical problems & projects oriented teaching style is really made easier to learn and grasp fundamentals & more. Thank you very much for the well confident lecture panel & organizers.
+
+> This course is a good start for my long journey. Absolutely good. Lectures were good. Hope more things from ENTC, Synopsys and Skill Surf. Good Luck.
+
+<details>
+  <summary>More feedback</summary>
+
+> The things I learned from this course - the insights, tactics, and guidance - felt more valuable than everything else I gained from this course. Never been to a course like this well prepared ...  hats-off to the entire team .. And their effort should be high appreciated ...These kind of initiatives deserves  to reach much more audience .. Wishing the team the best in their future endeavors ..
+
+> Actually the instructors were very knowledgeable on this area and gave not only the theoretical knowledge but always gave an industrial approach. Giving access to the session recordings and other lecture materials though the moodle is also very convenient for us and it is highly appreciated.I am very grateful to have this course well with a discount also, as this knowledge is very difficult to occupy from a country like ours where there are not much resource persons in this domain.The content is okay but the sessions were much lengthy.So in next iteration of the course if the number of session hours within a day can be reduced it will be more convenient for the participants.
+
+> Dr./Mr. Abarajithan was well-prepared for the lectures and explained System Verilog programming very clearly, while also highlighting the opportunities in this field. The course content covered the basics of FPGA programming, which is helpful for beginners who are taking their baby steps in this field. As a beginner, I am satisfied with following this course.
+
+> The course was very interesting, and I was a total beginner for the SystemVerilog. But, at the end with the help of the teachers and the instructors I was able to grab the content in my best. I am willing to join future courses and waiting for them. Thank you very much.
+
+</details>
+
+
+---
+
+
+The examples given in this repo have been tested on Xilinx Vivado and Synopsys DesignCompiler. Full system, AXI Stream system and their submodules have been tested on Icarus Verilog as well.  
 
 ## Full System: Matrix Vector Multiplier (AXI-Stream) with UART Interface
 
@@ -51,7 +75,7 @@ To test the AXI Stream IP with Icarus Verilog:
 iverilog -g2012 -o compiled rtl/axis_matvec_mul.v rtl/matvec_mul.sv rtl/skid_buffer.sv tb/axis_matvec_mul_tb.sv tb/simple_axis_tb.sv && vvp compiled
 ```
 
-
+---
 
 
 ## Examples: Basic to advanced
