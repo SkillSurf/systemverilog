@@ -1,0 +1,93 @@
+*#########################################################################################
+*# SAED 32/28NM 1p9m STAR-RC itf2tluplus mapping file					 #
+*#											 #
+*# Revision History:									 #
+*# Rev.		date		what							 #
+*# --------------------------------------------------------------------------------------#	
+*# 1.0		--/---/2011	(First draft)						 #
+*#########################################################################################
+***********************************************************************
+****                                                               ****
+****  The data contained in the file is created for educational    **** 
+****  and training purposes only and are not recommended           ****
+****  for fabrication                                              ****
+****                                                               ****
+***********************************************************************
+****                                                               ****
+****  Copyright (C) 2013 Synopsys, Inc.                            ****
+****                                                               ****
+***********************************************************************
+****                                                               ****
+****  The 32/28nm Generic Library ("Library") is unsupported       ****    
+****  Confidential Information of Synopsys, Inc. ("Synopsys")      ****    
+****  provided to you as Documentation under the terms of the      ****    
+****  End User Software License Agreement between you or your      ****    
+****  employer and Synopsys ("License Agreement") and you agree    ****    
+****  not to distribute or disclose the Library without the        ****    
+****  prior written consent of Synopsys. The Library IS NOT an     ****    
+****  item of Licensed Software or Licensed Product under the      ****    
+****  License Agreement.  Synopsys and/or its licensors own        ****    
+****  and shall retain all right, title and interest in and        ****    
+****  to the Library and all modifications thereto, including      ****    
+****  all intellectual property rights embodied therein. All       ****    
+****  rights in and to any Library modifications you make are      ****    
+****  hereby assigned to Synopsys. If you do not agree with        ****    
+****  this notice, including the disclaimer below, then you        ****    
+****  are not authorized to use the Library.                       ****    
+****                                                               ****  
+****                                                               ****      
+****  THIS LIBRARY IS BEING DISTRIBUTED BY SYNOPSYS SOLELY ON AN   ****
+****  "AS IS" BASIS, WITH NO INTELLECUTAL PROPERTY                 ****
+****  INDEMNIFICATION AND NO SUPPORT. ANY EXPRESS OR IMPLIED       ****
+****  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED       ****
+****  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR   ****
+****  PURPOSE ARE HEREBY DISCLAIMED. IN NO EVENT SHALL SYNOPSYS    ****
+****  BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,     ****
+****  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT      ****
+****  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;     ****
+****  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)     ****
+****  HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN    ****
+****  CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE    ****
+****  OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS      ****
+****  DOCUMENTATION, EVEN IF ADVISED OF THE POSSIBILITY OF         ****
+****  SUCH DAMAGE.                                                 **** 		
+****                                                               ****  
+***********************************************************************
+
+
+
+conducting_layers
+        DIFF     DIFF
+	PO	 POLY
+	M1	 M1	   
+	M2	 M2	   
+	M3	 M3	   
+	M4	 M4
+	M5	 M5	   
+	M6	 M6	   
+	M7	 M7	   
+	M8	 M8	   
+	M9	 M9		  
+	MRDL	 MRDL
+via_layers
+	CO	 POLYCONT 
+	VIA1	 VIA1 
+	VIA2	 VIA2   	 
+	VIA3	 VIA3   	 
+	VIA4	 VIA4   	 
+	VIA5	 VIA5   	 
+	VIA6	 VIA6   	 
+	VIA7	 VIA7   	 
+	VIA8	 VIA8   		
+	VIARDL   VIARDL
+marker_layers
+	metal1_pin
+	metal2_pin
+	metal3_pin
+	metal4_pin
+	metal5_pin
+	metal6_pin
+	metal7_pin
+	metal8_pin	
+	metal9_pin	
+	
