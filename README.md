@@ -8,9 +8,6 @@ This repository contains the examples for the short course: [SystemVerilog for A
 
 > This course is a good start for my long journey. Absolutely good. Lectures were good. Hope more things from ENTC, Synopsys and Skill Surf. Good Luck.
 
-<details>
-  <summary>More feedback</summary>
-
 > The things I learned from this course - the insights, tactics, and guidance - felt more valuable than everything else I gained from this course. Never been to a course like this well prepared ...  hats-off to the entire team .. And their effort should be high appreciated ...These kind of initiatives deserves  to reach much more audience .. Wishing the team the best in their future endeavors ..
 
 > Actually the instructors were very knowledgeable on this area and gave not only the theoretical knowledge but always gave an industrial approach. Giving access to the session recordings and other lecture materials though the moodle is also very convenient for us and it is highly appreciated.I am very grateful to have this course well with a discount also, as this knowledge is very difficult to occupy from a country like ours where there are not much resource persons in this domain.The content is okay but the sessions were much lengthy.So in next iteration of the course if the number of session hours within a day can be reduced it will be more convenient for the participants.
@@ -19,7 +16,6 @@ This repository contains the examples for the short course: [SystemVerilog for A
 
 > The course was very interesting, and I was a total beginner for the SystemVerilog. But, at the end with the help of the teachers and the instructors I was able to grab the content in my best. I am willing to join future courses and waiting for them. Thank you very much.
 
-</details>
 
 
 ---
