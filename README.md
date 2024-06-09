@@ -141,7 +141,7 @@ Each example introduces digital design concepts and synthesisable (RTL) & non-sy
     - Testbench with classes: virtual class to parametrize functions, streaming operator
     - 
 ## License
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/SkillSurf/systemverilog/blob/main/LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/SkillSurf/systemverilog/blob/master/LICENSE) file for details
 <br />
 <br />
 © SkillSurf 2023
