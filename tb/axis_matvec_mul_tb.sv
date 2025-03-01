@@ -48,7 +48,7 @@ module axis_matvec_mul_tb;
       in_data = {k_in, x_in};
 
       queue.push_front(in_data); // append to end of queue
-      source.axis_push_packet;
+      source.axis_push_packet(in_data);
     end
   end
 
@@ -56,7 +56,7 @@ module axis_matvec_mul_tb;
   initial begin
     repeat(NUM_EXP) begin
 
-      sink.axis_pull_packet;
+      sink.axis_pull_packet(out_data);
       {k_out, x_out} = queue.pop_back();
 
       exp_data = '0;
