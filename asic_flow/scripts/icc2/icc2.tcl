@@ -17,8 +17,8 @@ set top_module full_adder
 #/* Library Name                                      */
 set library_name saed32_edk 
 
-set PDKDIR /evprj156/projects/tsmc_32nm/SAED32_EDK
-set SAED32_EDK /evprj156/projects/tsmc_32nm/SAED32_EDK/lib
+set PDKDIR $working_dir/tsmc_32nm/SAED32_EDK
+set SAED32_EDK $working_dir/tsmc_32nm/SAED32_EDK/lib
 set synopsys /global/etc/modules/files/eda/syn/2024.09-SP2
 
 set search_path [concat $search_path $SAED32_EDK/stdcell_hvt $SAED32_EDK/stdcell_hvt/db_nldm]
@@ -33,15 +33,15 @@ set_app_options -list {lib.configuration.display_lm_messages {false}}
 #   Create Library
 #----------------------------------------------
 
-create_lib -ref_libs {$working_dir/libs/saed32nm_hvt_1p9m.lef} -technology $working_dir/libs/saed32nm_1p9m_mw.tf $library_name
+create_lib -ref_libs $working_dir/libs/saed32nm_hvt_1p9m.lef -technology "$working_dir/libs/saed32nm_1p9m_mw.tf" $library_name
 
-read_parasitic_tech -name {parasitics} -tlup {$working_dir/libs/saed32nm_1p9m_Cmax.tluplus} -layermap {$working_dir/libs/saed32nm_tf_itf_tluplus.map}
+read_parasitic_tech -name {parasitics} -tlup $working_dir/libs/saed32nm_1p9m_Cmax.tluplus -layermap $working_dir/libs/saed32nm_tf_itf_tluplus.map
 
 #---------------------------------------------
 #   Create Block
 #----------------------------------------------
 
-read_verilog -library $library_name -top $top_module ../../output/${top_module}.out.v
+read_verilog -library $library_name -top $top_module "$working_dir/output/${top_module}.out.v"
 link_block
 
 save_block $library_name:$top_module
