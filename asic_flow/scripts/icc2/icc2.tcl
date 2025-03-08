@@ -8,6 +8,9 @@
 
 #  MODIFY as required
 
+# set the working directory path
+set working_dir /evprj156/projects 
+
 #/* Top-level Module                                  */
 set top_module full_adder
 
@@ -30,9 +33,9 @@ set_app_options -list {lib.configuration.display_lm_messages {false}}
 #   Create Library
 #----------------------------------------------
 
-create_lib -ref_libs {/home/aedc4/0_SysV_KithminR/ASIC_flow_demo/libs/saed32nm_hvt_1p9m.lef} -technology /home/aedc4/0_SysV_KithminR/ASIC_flow_demo/libs/saed32nm_1p9m_mw.tf $library_name
+create_lib -ref_libs {$working_dir/libs/saed32nm_hvt_1p9m.lef} -technology $working_dir/libs/saed32nm_1p9m_mw.tf $library_name
 
-read_parasitic_tech -name {parasitics} -tlup {/home/aedc4/0_SysV_KithminR/ASIC_flow_demo/libs/saed32nm_1p9m_Cmax.tluplus} -layermap {/home/aedc4/0_SysV_KithminR/ASIC_flow_demo/libs/saed32nm_tf_itf_tluplus.map}
+read_parasitic_tech -name {parasitics} -tlup {$working_dir/libs/saed32nm_1p9m_Cmax.tluplus} -layermap {$working_dir/libs/saed32nm_tf_itf_tluplus.map}
 
 #---------------------------------------------
 #   Create Block
