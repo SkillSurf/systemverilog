@@ -91,7 +91,7 @@ save_lib -all
 
 set_app_options -name place.coarse.fix_hard_macros -value false
 set_app_options -name plan.place.auto_create_blockages -value auto
-create_placement -floorplan -timing_driven
+create_placement -floorplan -timing_driven -congestion -incremental -effort high
 save_lib -all
 
 # -----------------------------------------
