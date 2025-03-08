@@ -51,7 +51,7 @@ save_lib -all
 #  Floorplan
 #------------------------------------------------
 
-initialize_floorplan -core_utilization 0.5 -core_offset {5}
+initialize_floorplan -core_utilization 0.1 -core_offset {5}
 
 #------------------------------------------
 #  Power Rings
