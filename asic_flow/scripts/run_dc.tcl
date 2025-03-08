@@ -6,11 +6,20 @@
 #/* SAED EDK 32nm                                  */
 #/**************************************************/
 
+# set the working directory path
+set working_dir /evprj156/projects
+
+# check if the provided working_dir path exists
+if {![file exists $working_dir]} {
+   puts "Error: $working_dir does not exists"
+   exit 1
+}
+
 #/* Top-level Module  - MODIFY as required            */
 set top_module full_adder; # set the variable top_module to hold the string "full_adder"
 
 #/* All verilog .sv files should be placed inside rtl */
-set rtlPath "../input/rtl/"
+set rtlPath $working_dir/input/rtl/
 
 #/* The name of the clock pin. If no clock-pin        */
 #/* exists, pick anything                             */
@@ -25,15 +34,15 @@ set my_input_delay_ns 0.2;
 set my_output_delay_ns 0.2; 
 
 # MODIFY as required - aedc4 might need to change
-set PDKDIR /evprj156/projects/tsmc_32nm/SAED32_EDK  
-set SAED32_EDK /evprj156/projects/tsmc_32nm/SAED32_EDK/lib 
+set PDKDIR $working_dir/tsmc_32nm/SAED32_EDK  
+set SAED32_EDK $working_dir/tsmc_32nm/SAED32_EDK/lib 
 set synopsys /global/etc/modules/files/eda/syn/2024.09-SP2 
 
 #/**************************************************/
 #/* No modifications needed below                  */
 #/**************************************************/
 # exec command in tcl scripting is used to run shell commands
-exec mkdir -p ../log ../output ../report; # creates log, output and report directories in the parent directory to the current one
+exec mkdir -p $working_dir/log $working_dir/output $working_dir/report; # creates log, output and report directories in the parent directory to the current one
 
 # creates a list of paths as search paths
 # $SAED32_EDK/stdcell_hvt -> contain high threshold voltage standard cells of the SAED32_EDK PDK
@@ -67,18 +76,18 @@ define_design_lib WORK -path .template
 
 # read RTL
 # analyze the SystemVerilog files in the rtlPath. This analysis will check for syntax errors and semantic errors in the file.
-analyze -format sverilog [glob ${rtlPath}*.sv] > ../log/1.${top_module}_analyse.log
+analyze -format sverilog [glob ${rtlPath}*.sv] > $working_dir/log/1.${top_module}_analyse.log
 
 # converts the rtl into technology independent, generic gate-level netlist using the contents of "${synopsys}/libraries/syn" folder
 # the heirarchy will be preserved
-elaborate $top_module > ../log/2.${top_module}_elaborate.log
+elaborate $top_module > $working_dir/log/2.${top_module}_elaborate.log
 
 # set the module that we are working with as the $top_module (= full_adder)
 current_design $top_module
 
 # check whether the design is ready to be synthesized
 # the logical correctness of the design, whether needed timing constraints are set etc. are checked here
-check_design > ../log/3.${top_module}_check_design.rpt
+check_design > $working_dir/log/3.${top_module}_check_design.rpt
 
 # Link Design
 link; # check whether the interconnections in the heirarchy are proper in the generic gate-level netlist created in the elaborate step
@@ -129,17 +138,17 @@ report_constraint -all_violators; # reports all timing violations, if any
 # Write Out Design and Constraints - Hierarchical
 current_design $top_module
 change_names -rules verilog -hierarchy; # renames signals and instances in the synthesized design to suit the Verilog naming rules
-write -format verilog -hierarchy -output ../output/${top_module}.out.v; # dump the synthesized design as a verilog file while preserving heirarchy
-write -format ddc -output ../output/${top_module}.out.ddc
-write_sdc ../output/${top_module}.sdc; # dump the design contraints used in this process
+write -format verilog -hierarchy -output $working_dir/output/${top_module}.out.v; # dump the synthesized design as a verilog file while preserving heirarchy
+write -format ddc -output $working_dir/output/${top_module}.out.ddc
+write_sdc $working_dir/output/${top_module}.sdc; # dump the design contraints used in this process
 
 # Write Reports
-report_port > ../report/${top_module}_port.rpt
-report_area > ../report/${top_module}_area.rpt
-report_cell > ../report/${top_module}_cell.rpt
-report_reference > ../report/${top_module}_area_reference.rpt
-report_power > ../report/${top_module}_power.rpt
-report_timing -path full -max_paths 100 -nets -transition_time -capacitance -significant_digits 3 -nosplit >  ../report/${top_module}_timing.rpt
+report_port > $working_dir/report/${top_module}_port.rpt
+report_area > $working_dir/report/${top_module}_area.rpt
+report_cell > $working_dir/report/${top_module}_cell.rpt
+report_reference > $working_dir/report/${top_module}_area_reference.rpt
+report_power > $working_dir/report/${top_module}_power.rpt
+report_timing -path full -max_paths 100 -nets -transition_time -capacitance -significant_digits 3 -nosplit >  $working_dir/report/${top_module}_timing.rpt
 
 # start GUI
 gui_start

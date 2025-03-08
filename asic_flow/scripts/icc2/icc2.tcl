@@ -11,6 +11,12 @@
 # set the working directory path
 set working_dir /evprj156/projects
 
+# check if the provided working_dir path exists
+if {![file exists $working_dir]} {
+   puts "Error: $working_dir does not exists"
+   exit 1
+}
+
 #/* Top-level Module                                  */
 set top_module full_adder
 
@@ -104,7 +110,7 @@ save_block $library_name:$top_module
 
 save_lib -all
 
-write_gds -hier all ${top_module}.gds
+write_gds -hier all $working_dir/${top_module}.gds
 
 start_gui
 
