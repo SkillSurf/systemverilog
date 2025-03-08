@@ -12,7 +12,7 @@
 set top_module full_adder
 
 #/* Library Name                                      */
-set library_name fa_icc2
+set library_name saed32_edk 
 
 set PDKDIR /evprj156/projects/tsmc_32nm/SAED32_EDK
 set SAED32_EDK /evprj156/projects/tsmc_32nm/SAED32_EDK/lib
