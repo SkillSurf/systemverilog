@@ -99,7 +99,7 @@ save_lib -all
 # -----------------------------------------
 
 #clock_opt
-route_auto -max_detail_route_iterations 5
+route_auto -save_after_global_route true
 save_block $library_name:$top_module
 
 save_lib -all
