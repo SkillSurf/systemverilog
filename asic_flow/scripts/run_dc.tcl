@@ -25,9 +25,9 @@ set my_input_delay_ns 0.2;
 set my_output_delay_ns 0.2; 
 
 # MODIFY as required - aedc4 might need to change
-set PDKDIR /home/aedc4/libs/tsmc_32nm/SAED32_EDK
-set SAED32_EDK /home/aedc4/libs/tsmc_32nm/SAED32_EDK/lib
-set synopsys /home/aedc4/Apps/syn/T-2022.03-SP5-1
+set PDKDIR /evprj156/projects/tsmc_32nm/SAED32_EDK  
+set SAED32_EDK /evprj156/projects/tsmc_32nm/SAED32_EDK/lib 
+set synopsys /global/etc/modules/files/eda/syn/2024.09-SP2 
 
 #/**************************************************/
 #/* No modifications needed below                  */

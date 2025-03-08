@@ -14,9 +14,9 @@ set top_module full_adder
 #/* Library Name                                      */
 set library_name fa_icc2
 
-set PDKDIR /home/aedc4/libs/tsmc_32nm/SAED32_EDK
-set SAED32_EDK /home/aedc4/libs/tsmc_32nm/SAED32_EDK/lib
-set synopsys /home/aedc4/Apps/syn/T-2022.03-SP5-1
+set PDKDIR /evprj156/projects/tsmc_32nm/SAED32_EDK
+set SAED32_EDK /evprj156/projects/tsmc_32nm/SAED32_EDK/lib
+set synopsys /global/etc/modules/files/eda/syn/2024.09-SP2
 
 set search_path [concat $search_path $SAED32_EDK/stdcell_hvt $SAED32_EDK/stdcell_hvt/db_nldm]
 set link_library {* saed32hvt_ss0p7v125c.db}
