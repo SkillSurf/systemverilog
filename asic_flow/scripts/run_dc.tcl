@@ -7,7 +7,7 @@
 #/**************************************************/
 
 #/* Top-level Module  - MODIFY as required            */
-set top_module full_adder  
+set top_module full_adder; # set the variable top_module to hold the string "full_adder"
 
 #/* All verilog .sv files should be placed inside rtl */
 set rtlPath "../input/rtl/"
@@ -16,14 +16,13 @@ set rtlPath "../input/rtl/"
 #/* exists, pick anything                             */
 set my_clock_pin clk
 
-#/* Target frequency in MHz for optimization          */
-set my_clk_freq_MHz 1000   
-
 #/* Delay of input signals (Clock-to-Q, Package etc.)  */
-set my_input_delay_ns 0.2
+# input delay is important to make sure that there won't be any setup time or hold time violation at the inputs to the module
+set my_input_delay_ns 0.2; 
 
 #/* Reserved time for output signals (Holdtime etc.)   */
-set my_output_delay_ns 0.2
+# output delay is important to make sure that there won't be any setup time or hold time violations in the next system that this chip interfaces to
+set my_output_delay_ns 0.2; 
 
 # MODIFY as required - aedc4 might need to change
 set PDKDIR /home/aedc4/libs/tsmc_32nm/SAED32_EDK
@@ -33,13 +32,22 @@ set synopsys /home/aedc4/Apps/syn/T-2022.03-SP5-1
 #/**************************************************/
 #/* No modifications needed below                  */
 #/**************************************************/
-exec mkdir -p ../log ../output ../report
+# exec command in tcl scripting is used to run shell commands
+exec mkdir -p ../log ../output ../report; # creates log, output and report directories in the parent directory to the current one
 
+# creates a list of paths as search paths
+# $SAED32_EDK/stdcell_hvt -> contain high threshold voltage standard cells of the SAED32_EDK PDK
+# $SAED32_EDK/stdcell_hvt/db_nldm -> contain the non-linear delay model database files for characterising cells delays in HVT standard cells.
+# ${synopsys}/libraries/syn -> contain generic synthesis libraries for mapping RTL to gates
+# ${synopsys}/dw/syn_ver -> contain synthesizable verilog codes of DesignWare IPs (DesignWare is a library of IPs from Synopsys)
+# ${synopsys}/dw/sim_ver -> contain simulation-only (non synthesizable) verilog codes of DesignWare IPs
 set search_path [concat $search_path $SAED32_EDK]
 set search_path [concat $search_path $SAED32_EDK/stdcell_hvt $SAED32_EDK/stdcell_hvt/db_nldm]
 set search_path [concat $search_path ${synopsys}/libraries/syn ${synopsys}/dw/syn_ver ${synopsys}/dw/sim_ver]
 
-set link_library [set target_library [concat  [list saed32hvt_ss0p7v125c.db] [list dw_foundation.sldb]]]
+# saed32hvt_ss0p7v125c.db -> contains the standard cells and their relevant information (eg: cell delays, setup/hold times etc.) of the SAED32_EDK PDK
+# dw_foundation.sldb -> contains the DesignWare IPs and their relevant information
+set link_library [concat  [list saed32hvt_ss0p7v125c.db] [list dw_foundation.sldb]]
 set synthetic_library [list dw_foundation.sldb]
 set target_library "saed32hvt_ss0p7v125c.db"
 
@@ -50,34 +58,51 @@ set hdlin_auto_save_templates false
 set wire_load_mode enclosed
 set timing_use_enhanced_capacitance_modeling true
 set verilogout_single_bit false
-remove_design -all
+remove_design -all; # remove all designs that are currently loaded into the tool's memory
 
+# defines a design library named "WORK" and set its directory to be the ".template" folder in the current working directory
+# a design library is a container for storing intermediate and final outputs in the synthesis process
+# the directory is where those outputs will be saved in the filesystem.
 define_design_lib WORK -path .template
 
 # read RTL
+# analyze the SystemVerilog files in the rtlPath. This analysis will check for syntax errors and semantic errors in the file.
 analyze -format sverilog [glob ${rtlPath}*.sv] > ../log/1.${top_module}_analyse.log
-#analyze -format verilog [glob ${rtlPath}*.v] > ../log/1.${top_module}_analyse.log
+
+# converts the rtl into technology independent, generic gate-level netlist using the contents of "${synopsys}/libraries/syn" folder
+# the heirarchy will be preserved
 elaborate $top_module > ../log/2.${top_module}_elaborate.log
+
+# set the module that we are working with as the $top_module (= full_adder)
 current_design $top_module
+
+# check whether the design is ready to be synthesized
+# the logical correctness of the design, whether needed timing constraints are set etc. are checked here
 check_design > ../log/3.${top_module}_check_design.rpt
 
 # Link Design
-link
-uniquify
+link; # check whether the interconnections in the heirarchy are proper in the generic gate-level netlist created in the elaborate step
+uniquify; # creates separate definitions of the submodules for each of its instantiations (done on the generic gate-level netlist)
 
 # Default SDC Constraints (can be an sdc file)
-set my_period 0.7
+set my_period 1.4
 
 set find_clock [ find port [list $my_clock_pin] ]
 if {  $find_clock != [list] } {
+   # if the design have a port named "clk" then set the 0.7ns period to that signal
    set clk_name $my_clock_pin
    create_clock -period $my_period $clk_name
 } else {
+   # if the design does not have a port named "clk" then make a virtual clock with period 0.7ns
+   # this virtual clock will be the reference for the input and output delay
    set clk_name vclk
    create_clock -period $my_period -name $clk_name
 }
 
+# set the input delay to all input ports except the clk port
 set_input_delay $my_input_delay_ns -clock $clk_name [remove_from_collection [all_inputs] $my_clock_pin]
+
+# set the output delay to all the output ports
 set_output_delay $my_output_delay_ns -clock $clk_name [all_outputs]
 #read_sdc ${top_module}.sdc
 
@@ -98,15 +123,15 @@ current_design $top_module
 # Compile
 compile -ungroup_all -map_effort medium -incremental_mapping -map_effort medium
 
-check_design
-report_constraint -all_violators
+check_design; # checks whether the synthesized design is free of errors
+report_constraint -all_violators; # reports all timing violations, if any
 
 # Write Out Design and Constraints - Hierarchical
 current_design $top_module
-change_names -rules verilog -hierarchy
-write -format verilog -hierarchy -output ../output/${top_module}.out.v
+change_names -rules verilog -hierarchy; # renames signals and instances in the synthesized design to suit the Verilog naming rules
+write -format verilog -hierarchy -output ../output/${top_module}.out.v; # dump the synthesized design as a verilog file while preserving heirarchy
 write -format ddc -output ../output/${top_module}.out.ddc
-write_sdc ../output/${top_module}.sdc
+write_sdc ../output/${top_module}.sdc; # dump the design contraints used in this process
 
 # Write Reports
 report_port > ../report/${top_module}_port.rpt
