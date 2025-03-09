@@ -144,4 +144,4 @@ Each example introduces digital design concepts and synthesisable (RTL) & non-sy
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/SkillSurf/systemverilog/blob/master/LICENSE) file for details
 <br />
 <br />
-© SkillSurf 2023
+© SkillSurf 2025
