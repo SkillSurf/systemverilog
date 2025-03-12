@@ -77,6 +77,8 @@ define_design_lib WORK -path .template
 # read RTL
 # analyze the SystemVerilog files in the rtlPath. This analysis will check for syntax errors and semantic errors in the file.
 analyze -format sverilog [glob ${rtlPath}*.sv] > $working_dir/log/1.${top_module}_analyse.log
+# analyze the Verilog files in the rtlPath. This analysis will check for syntax errors and semantic errors in the file.
+analyze -format verilog [glob ${rtlPath}*.v] > $working_dir/log/1.${top_module}_analyse.log
 
 # converts the rtl into technology independent, generic gate-level netlist using the contents of "${synopsys}/libraries/syn" folder
 # the heirarchy will be preserved
