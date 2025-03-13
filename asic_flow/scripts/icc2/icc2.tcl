@@ -23,8 +23,8 @@ set top_module full_adder
 #/* Library Name                                      */
 set library_name saed32_edk 
 
-set PDKDIR $working_dir/tsmc_32nm/SAED32_EDK
-set SAED32_EDK $working_dir/tsmc_32nm/SAED32_EDK/lib
+set PDKDIR $working_dir/../tsmc_32nm/SAED32_EDK
+set SAED32_EDK $working_dir/../tsmc_32nm/SAED32_EDK/lib
 set synopsys /global/etc/modules/files/eda/syn/2024.09-SP2
 
 set search_path [concat $search_path $SAED32_EDK/stdcell_hvt $SAED32_EDK/stdcell_hvt/db_nldm]
