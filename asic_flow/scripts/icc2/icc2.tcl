@@ -65,16 +65,16 @@ initialize_floorplan -core_utilization 0.1 -core_offset {5}
 
 connect_pg_net -automatic 
 
-create_pg_ring_pattern ring_pattern -horizontal_layer M1 \
+create_pg_ring_pattern ring_pattern -horizontal_layer M8 \
    -horizontal_width {1.5} -horizontal_spacing {0.5} \
-   -vertical_layer M2 -vertical_width {1.5} -vertical_spacing {0.5}
+   -vertical_layer M9 -vertical_width {1.5} -vertical_spacing {0.5}
 set_pg_strategy core_ring \
    -pattern {{name: ring_pattern} \
    {nets: {VDD VSS}} {offset: {0.5 0.5}}} -core
 compile_pg -strategies core_ring
 
 # This will need to be done MANUALLY
-create_pg_mesh_pattern mesh_pattern -layers { {{horizontal_layer: M1} {width: 0.75} {pitch: 30} {spacing: interleaving}}  {{vertical_layer: M2} {width: 0.84} {pitch: 33.6} {spacing: interleaving}} }
+create_pg_mesh_pattern mesh_pattern -layers { {{horizontal_layer: M8} {width: 0.75} {pitch: 30} {spacing: interleaving}}  {{vertical_layer: M9} {width: 0.84} {pitch: 33.6} {spacing: interleaving}} }
 set_pg_strategy mesh_strategy -polygon {{1.000 4.759} {21.312 16.965}} -pattern {{pattern: mesh_pattern}{nets: {VDD VSS}}} -blockage {macros: all}
 create_pg_std_cell_conn_pattern std_cell_pattern
 set_pg_strategy std_cell_strategy -polygon {{1.000 4.759} {21.312 16.965}} -pattern {{pattern: std_cell_pattern}{nets: {VDD VSS}}}
