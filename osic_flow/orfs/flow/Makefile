@@ -6,10 +6,10 @@
 # Uncomment or add the design to run
 # ==============================================================================
 
-DESIGN_CONFIG = ./designs/ihp-sg13g2/project/config.mk
+DESIGN_CONFIG = ./designs/ihp-sg13g2/adder32/config.mk
 
 # Default design
-DESIGN_CONFIG ?= ./designs/ihp-sg13g2/project/config.mk
+DESIGN_CONFIG ?= ./designs/ihp-sg13g2/adder32/config.mk
 
 # Include design and platform configuration before setting default options
 # in this file. This allows the DESIGN_CONFIG to set different defaults than

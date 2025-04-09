@@ -1,0 +1,41 @@
+
+19. Printing statistics.
+
+=== adder32 ===
+
+   Number of wires:                217
+   Number of wire bits:            310
+   Number of public wires:           5
+   Number of public wire bits:      98
+   Number of ports:                  5
+   Number of port bits:             98
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                245
+     sg13g2_a21o_1                   7
+     sg13g2_a21oi_1                 23
+     sg13g2_a21oi_2                  1
+     sg13g2_a221oi_1                 8
+     sg13g2_a22oi_1                  8
+     sg13g2_and2_1                   4
+     sg13g2_and3_1                   1
+     sg13g2_inv_1                    8
+     sg13g2_nand2_1                 26
+     sg13g2_nand2b_1                 5
+     sg13g2_nand3_1                  4
+     sg13g2_nand3b_1                 2
+     sg13g2_nand4_1                  1
+     sg13g2_nor2_1                  36
+     sg13g2_nor2b_1                  5
+     sg13g2_nor3_1                   5
+     sg13g2_nor4_1                   2
+     sg13g2_o21ai_1                 20
+     sg13g2_or2_1                   14
+     sg13g2_or3_1                    1
+     sg13g2_xnor2_1                 30
+     sg13g2_xor2_1                  34
+
+   Chip area for module '\adder32': 2538.043200
+     of which used for sequential elements: 0.000000 (0.00%)
+

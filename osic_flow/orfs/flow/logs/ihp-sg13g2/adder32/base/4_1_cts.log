@@ -1,0 +1,45 @@
+OpenROAD v2.0-19249-geafd19f93 
+Features included (+) or not (-): +GPU +GUI +Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 8 thread(s).
+clock_tree_synthesis -sink_clustering_enable -balance_levels
+[INFO CTS-0050] Root buffer is sg13g2_buf_1.
+[INFO CTS-0051] Sink buffer is sg13g2_buf_1.
+[INFO CTS-0052] The following clock buffers will be used for CTS:
+                    sg13g2_buf_1
+[INFO CTS-0049] Characterization buffer is sg13g2_buf_1.
+[WARNING CTS-0083] No clock nets have been found.
+[INFO CTS-0008] TritonCTS found 0 clock nets.
+[WARNING CTS-0082] No valid clock nets in the design.
+[WARNING STA-0450] virtual clock core_clock can not be propagated.
+[INFO RSZ-0058] Using max wire length 16273um.
+Placement Analysis
+---------------------------------
+total displacement          0.0 u
+average displacement        0.0 u
+max displacement            0.0 u
+original HPWL            7307.2 u
+legalized HPWL           7489.5 u
+delta HPWL                    2 %
+
+repair_timing -verbose -setup_margin 0 -hold_margin 0 -repair_tns 100 -match_cell_footprint
+[INFO RSZ-0098] No setup violations found
+[INFO RSZ-0033] No hold violations found.
+Placement Analysis
+---------------------------------
+total displacement          0.0 u
+average displacement        0.0 u
+max displacement            0.0 u
+original HPWL            7489.5 u
+legalized HPWL           7489.5 u
+delta HPWL                    0 %
+
+Report metrics stage 4, cts final...
+No registers in design
+
+==========================================================================
+cts final report_design_area
+--------------------------------------------------------------------------
+Design area 3286 u^2 55% utilization.
+Elapsed time: 0:01.05[h:]min:sec. CPU time: user 0.65 sys 0.39 (98%). Peak memory: 376076KB.

@@ -1,0 +1,34 @@
+OpenROAD v2.0-19249-geafd19f93 
+Features included (+) or not (-): +GPU +GUI +Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 8 thread(s).
+[INFO ODB-0227] LEF file: /foss/designs/systemverilog/osic_flow/orfs/flow/platforms/ihp-sg13g2/lef/sg13g2_tech.lef, created 19 layers, 300 vias
+[INFO ODB-0227] LEF file: /foss/designs/systemverilog/osic_flow/orfs/flow/platforms/ihp-sg13g2/lef/sg13g2_stdcell.lef, created 78 library cells
+[WARNING STA-0366] port 'clock_i' not found.
+
+==========================================================================
+Floorplan check_setup
+--------------------------------------------------------------------------
+number instances in verilog is 245
+[WARNING IFP-0028] Core area lower left (20.000, 20.000) snapped to (20.160, 22.680).
+[INFO IFP-0001] Added 20 rows of 166 site CoreSite.
+repair_timing -verbose -setup_margin 0 -repair_tns 100 -match_cell_footprint
+[WARNING RSZ-0021] no estimated parasitics. Using wire load models.
+[INFO RSZ-0098] No setup violations found
+[INFO RSZ-0033] No hold violations found.
+Default units for flow
+ time 1ns
+ capacitance 1pF
+ resistance 1kohm
+ voltage 1v
+ current 1uA
+ power 1pW
+ distance 1um
+Report metrics stage 2, floorplan final...
+
+==========================================================================
+floorplan final report_design_area
+--------------------------------------------------------------------------
+Design area 2538 u^2 42% utilization.
+Elapsed time: 0:00.19[h:]min:sec. CPU time: user 0.14 sys 0.02 (86%). Peak memory: 109500KB.

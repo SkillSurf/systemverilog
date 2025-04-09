@@ -1,0 +1,40 @@
+OpenROAD v2.0-19249-geafd19f93 
+Features included (+) or not (-): +GPU +GUI +Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 8 thread(s).
+[WARNING STA-0450] virtual clock core_clock can not be propagated.
+[WARNING FIN-0010] Skipping layer OVERLAP.
+[WARNING FIN-0010] Skipping layer LOCKED.
+[WARNING FIN-0010] Skipping layer LOCKED1.
+[WARNING FIN-0010] Skipping layer LOCKED2.
+[WARNING FIN-0010] Skipping layer GatPoly.
+[WARNING FIN-0010] Skipping layer Cont.
+[INFO FIN-0003] Filling layer Metal1.
+[INFO FIN-0009] Filling 13 areas with non-OPC fill.
+[INFO FIN-0004] Total fills: 0.
+[WARNING FIN-0010] Skipping layer Via1.
+[INFO FIN-0003] Filling layer Metal2.
+[INFO FIN-0009] Filling 73 areas with non-OPC fill.
+[INFO FIN-0004] Total fills: 51.
+[WARNING FIN-0010] Skipping layer Via2.
+[INFO FIN-0003] Filling layer Metal3.
+[INFO FIN-0009] Filling 49 areas with non-OPC fill.
+[INFO FIN-0004] Total fills: 119.
+[WARNING FIN-0010] Skipping layer Via3.
+[INFO FIN-0003] Filling layer Metal4.
+[INFO FIN-0009] Filling 1 areas with non-OPC fill.
+[INFO FIN-0004] Total fills: 374.
+[WARNING FIN-0010] Skipping layer Via4.
+[INFO FIN-0003] Filling layer Metal5.
+[INFO FIN-0009] Filling 3 areas with non-OPC fill.
+[INFO FIN-0004] Total fills: 626.
+[WARNING FIN-0010] Skipping layer TopVia1.
+[INFO FIN-0003] Filling layer TopMetal1.
+[INFO FIN-0009] Filling 3 areas with non-OPC fill.
+[INFO FIN-0004] Total fills: 662.
+[WARNING FIN-0010] Skipping layer TopVia2.
+[INFO FIN-0003] Filling layer TopMetal2.
+[INFO FIN-0009] Filling 1 areas with non-OPC fill.
+[INFO FIN-0004] Total fills: 722.
+Elapsed time: 0:00.23[h:]min:sec. CPU time: user 0.18 sys 0.03 (95%). Peak memory: 106868KB.

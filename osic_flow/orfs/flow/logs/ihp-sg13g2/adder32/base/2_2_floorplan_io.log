@@ -1,0 +1,10 @@
+OpenROAD v2.0-19249-geafd19f93 
+Features included (+) or not (-): +GPU +GUI +Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 8 thread(s).
+place_pins -hor_layers Metal2 -ver_layers Metal3 -random
+Found 0 macro blocks.
+Using 2 tracks default min distance between IO pins.
+[INFO PPL-0007] Random pin placement.
+Elapsed time: 0:00.13[h:]min:sec. CPU time: user 0.11 sys 0.01 (93%). Peak memory: 106628KB.

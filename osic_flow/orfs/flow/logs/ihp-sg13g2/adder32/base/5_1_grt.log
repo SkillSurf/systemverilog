@@ -1,0 +1,242 @@
+OpenROAD v2.0-19249-geafd19f93 
+Features included (+) or not (-): +GPU +GUI +Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 8 thread(s).
+[INFO DRT-0149] Reading tech and libs.
+[WARNING DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer Cont
+[WARNING DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer Via1
+[WARNING DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer Via1
+[WARNING DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer Via2
+[WARNING DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer Via3
+[WARNING DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer Via4
+[WARNING DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer TopVia1
+[WARNING DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer TopVia1
+[WARNING DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer TopVia2
+[WARNING DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer TopVia2
+
+Units:                1000
+Number of layers:     15
+Number of macros:     78
+Number of vias:       312
+Number of viarulegen: 6
+
+[INFO DRT-0150] Reading design.
+
+Design:                   adder32
+Die area:                 ( 0 0 ) ( 120000 120000 )
+Number of track patterns: 14
+Number of DEF vias:       0
+Number of components:     343
+Number of terminals:      98
+Number of snets:          2
+Number of nets:           408
+
+[INFO DRT-0167] List of default vias:
+  Layer Via2
+    default via: Via2_YX_so
+  Layer Via3
+    default via: Via3_YX_so
+  Layer Via4
+    default via: Via4_YX_so
+  Layer TopVia1
+    default via: TopVia1EWNS
+  Layer TopVia2
+    default via: TopVia2EWNS
+[INFO DRT-0162] Library cell analysis.
+[INFO DRT-0163] Instance analysis.
+[INFO DRT-0164] Number of unique instances = 46.
+[INFO DRT-0168] Init region query.
+[INFO DRT-0024]   Complete GatPoly.
+[INFO DRT-0024]   Complete Cont.
+[INFO DRT-0024]   Complete Metal1.
+[INFO DRT-0024]   Complete Via1.
+[INFO DRT-0024]   Complete Metal2.
+[INFO DRT-0024]   Complete Via2.
+[INFO DRT-0024]   Complete Metal3.
+[INFO DRT-0024]   Complete Via3.
+[INFO DRT-0024]   Complete Metal4.
+[INFO DRT-0024]   Complete Via4.
+[INFO DRT-0024]   Complete Metal5.
+[INFO DRT-0024]   Complete TopVia1.
+[INFO DRT-0024]   Complete TopMetal1.
+[INFO DRT-0024]   Complete TopVia2.
+[INFO DRT-0024]   Complete TopMetal2.
+[INFO DRT-0033] GatPoly shape region query size = 0.
+[INFO DRT-0033] Cont shape region query size = 0.
+[INFO DRT-0033] Metal1 shape region query size = 5862.
+[INFO DRT-0033] Via1 shape region query size = 609.
+[INFO DRT-0033] Metal2 shape region query size = 173.
+[INFO DRT-0033] Via2 shape region query size = 609.
+[INFO DRT-0033] Metal3 shape region query size = 177.
+[INFO DRT-0033] Via3 shape region query size = 609.
+[INFO DRT-0033] Metal4 shape region query size = 126.
+[INFO DRT-0033] Via4 shape region query size = 609.
+[INFO DRT-0033] Metal5 shape region query size = 87.
+[INFO DRT-0033] TopVia1 shape region query size = 264.
+[INFO DRT-0033] TopMetal1 shape region query size = 24.
+[INFO DRT-0033] TopVia2 shape region query size = 0.
+[INFO DRT-0033] TopMetal2 shape region query size = 0.
+[INFO DRT-0165] Start pin access.
+[INFO DRT-0078]   Complete 256 pins.
+[INFO DRT-0081]   Complete 46 unique inst patterns.
+[INFO DRT-0084]   Complete 163 groups.
+#scanned instances     = 343
+#unique  instances     = 46
+#stdCellGenAp          = 1881
+#stdCellValidPlanarAp  = 0
+#stdCellValidViaAp     = 1294
+#stdCellPinNoAp        = 0
+#stdCellPinCnt         = 1033
+#instTermValidViaApCnt = 0
+#macroGenAp            = 0
+#macroValidPlanarAp    = 0
+#macroValidViaAp       = 0
+#macroNoAp             = 0
+[INFO DRT-0166] Complete pin access.
+[INFO DRT-0267] cpu time = 00:00:14, elapsed time = 00:00:02, memory = 109.29 (MB), peak = 109.29 (MB)
+global_route -congestion_report_file ./reports/ihp-sg13g2/adder32/base/congestion.rpt -congestion_iterations 30 -congestion_report_iter_step 5 -verbose
+[INFO GRT-0020] Min routing layer: Metal2
+[INFO GRT-0021] Max routing layer: Metal5
+[INFO GRT-0022] Global adjustment: 0%
+[INFO GRT-0023] Grid origin: (0, 0)
+[INFO GRT-0043] No OR_DEFAULT vias defined.
+[INFO GRT-0088] Layer Metal1  Track-Pitch = 0.4800  line-2-Via Pitch: 0.3650
+[INFO GRT-0088] Layer Metal2  Track-Pitch = 0.4200  line-2-Via Pitch: 0.4100
+[INFO GRT-0088] Layer Metal3  Track-Pitch = 0.4800  line-2-Via Pitch: 0.4100
+[INFO GRT-0088] Layer Metal4  Track-Pitch = 0.4200  line-2-Via Pitch: 0.4100
+[INFO GRT-0088] Layer Metal5  Track-Pitch = 3.4800  line-2-Via Pitch: 0.4100
+[INFO GRT-0003] Macros: 0
+[INFO GRT-0043] No OR_DEFAULT vias defined.
+[INFO GRT-0004] Blockages: 0
+[INFO GRT-0019] Found 0 clock nets.
+[INFO GRT-0001] Minimum degree: 2
+[INFO GRT-0002] Maximum degree: 8
+
+[INFO GRT-0053] Routing resources analysis:
+          Routing      Original      Derated      Resource
+Layer     Direction    Resources     Resources    Reduction (%)
+---------------------------------------------------------------
+Metal1     Vertical            0             0          0.00%
+Metal2     Horizontal       4528          3937          13.05%
+Metal3     Vertical         4000          2989          25.27%
+Metal4     Horizontal       4528          3937          13.05%
+Metal5     Vertical          528           183          65.34%
+---------------------------------------------------------------
+
+[INFO GRT-0197] Via related to pin nodes: 1661
+[INFO GRT-0198] Via related Steiner nodes: 2
+[INFO GRT-0199] Via filling finished.
+[INFO GRT-0111] Final number of vias: 2041
+[INFO GRT-0112] Final usage 3D: 7133
+
+[INFO GRT-0096] Final congestion report:
+Layer         Resource        Demand        Usage (%)    Max H / Max V / Total Overflow
+---------------------------------------------------------------------------------------
+Metal1               0             0            0.00%             0 /  0 /  0
+Metal2            3937           463           11.76%             0 /  0 /  0
+Metal3            2989           547           18.30%             0 /  0 /  0
+Metal4            3937             0            0.00%             0 /  0 /  0
+Metal5             183             0            0.00%             0 /  0 /  0
+---------------------------------------------------------------------------------------
+Total            11046          1010            9.14%             0 /  0 /  0
+
+[INFO GRT-0018] Total wirelength: 11966 um
+[INFO GRT-0014] Routed nets: 408
+[WARNING STA-0450] virtual clock core_clock can not be propagated.
+Perform buffer insertion and gate resizing...
+repair_design -verbose
+[INFO RSZ-0058] Using max wire length 16273um.
+Iteration |   Area    | Resized | Buffers | Nets repaired | Remaining
+---------------------------------------------------------------------
+        0 |     +0.0% |       0 |       0 |             0 |       408
+       10 |     +0.0% |       0 |       0 |             0 |       398
+       20 |     +0.0% |       0 |       0 |             0 |       388
+       30 |     +0.0% |       0 |       0 |             0 |       378
+       40 |     +0.0% |       0 |       0 |             0 |       368
+       50 |     +0.0% |       0 |       0 |             0 |       358
+       60 |     +0.0% |       0 |       0 |             0 |       348
+       70 |     +0.0% |       0 |       0 |             0 |       338
+       80 |     +0.0% |       0 |       0 |             0 |       328
+       90 |     +0.0% |       0 |       0 |             0 |       318
+      100 |     +0.0% |       0 |       0 |             0 |       308
+      110 |     +0.0% |       0 |       0 |             0 |       298
+      120 |     +0.0% |       0 |       0 |             0 |       288
+      130 |     +0.0% |       0 |       0 |             0 |       278
+      140 |     +0.0% |       0 |       0 |             0 |       268
+      150 |     +0.0% |       0 |       0 |             0 |       258
+      160 |     +0.0% |       0 |       0 |             0 |       248
+      170 |     +0.0% |       0 |       0 |             0 |       238
+      180 |     +0.0% |       0 |       0 |             0 |       228
+      190 |     +0.0% |       0 |       0 |             0 |       218
+      200 |     +0.0% |       0 |       0 |             0 |       208
+      210 |     +0.0% |       0 |       0 |             0 |       198
+      220 |     +0.0% |       0 |       0 |             0 |       188
+      230 |     +0.0% |       0 |       0 |             0 |       178
+      240 |     +0.0% |       0 |       0 |             0 |       168
+      250 |     +0.0% |       0 |       0 |             0 |       158
+      260 |     +0.0% |       0 |       0 |             0 |       148
+      270 |     +0.0% |       0 |       0 |             0 |       138
+      280 |     +0.0% |       0 |       0 |             0 |       128
+      290 |     +0.0% |       0 |       0 |             0 |       118
+      300 |     +0.0% |       0 |       0 |             0 |       108
+      310 |     +0.0% |       0 |       0 |             0 |        98
+      320 |     +0.0% |       0 |       0 |             0 |        88
+      330 |     +0.0% |       0 |       0 |             0 |        78
+      340 |     +0.0% |       0 |       0 |             0 |        68
+      350 |     +0.0% |       0 |       0 |             0 |        58
+      360 |     +0.0% |       0 |       0 |             0 |        48
+      370 |     +0.0% |       0 |       0 |             0 |        38
+      380 |     +0.0% |       0 |       0 |             0 |        28
+      390 |     +0.0% |       0 |       0 |             0 |        18
+      400 |     +0.0% |       0 |       0 |             0 |         8
+    final |     +0.0% |       0 |       0 |             0 |         0
+---------------------------------------------------------------------
+global_route -start_incremental
+detailed_placement
+Placement Analysis
+---------------------------------
+total displacement          0.0 u
+average displacement        0.0 u
+max displacement            0.0 u
+original HPWL            7489.5 u
+legalized HPWL           7489.5 u
+delta HPWL                    0 %
+
+global_route -end_incremental -congestion_report_file ./reports/ihp-sg13g2/adder32/base/congestion_post_repair_design.rpt
+Repair setup and hold violations...
+repair_timing -verbose -setup_margin 0 -hold_margin 0 -repair_tns 100
+[INFO RSZ-0098] No setup violations found
+[INFO RSZ-0033] No hold violations found.
+global_route -start_incremental
+detailed_placement
+Placement Analysis
+---------------------------------
+total displacement          0.0 u
+average displacement        0.0 u
+max displacement            0.0 u
+original HPWL            7489.5 u
+legalized HPWL           7489.5 u
+delta HPWL                    0 %
+
+global_route -end_incremental -congestion_report_file ./reports/ihp-sg13g2/adder32/base/congestion_post_repair_timing.rpt
+global_route -start_incremental
+global_route -end_incremental -congestion_report_file ./reports/ihp-sg13g2/adder32/base/congestion_post_recover_power.rpt
+Repair antennas...
+[INFO GRT-0012] Found 0 antenna violations.
+[INFO ANT-0002] Found 0 net violations.
+[INFO ANT-0001] Found 0 pin violations.
+Estimate parasitics...
+Report metrics stage 5, global route...
+No registers in design
+
+==========================================================================
+global route report_design_area
+--------------------------------------------------------------------------
+Design area 3286 u^2 55% utilization.
+[INFO FLW-0007] clock core_clock period 125.000000
+[INFO FLW-0008] Clock core_clock period 49.230
+[INFO FLW-0009] Clock core_clock slack 73.179
+[WARNING STA-0450] virtual clock core_clock can not be propagated.
+[INFO FLW-0011] Path endpoint path count 33
+Elapsed time: 0:02.53[h:]min:sec. CPU time: user 14.76 sys 0.12 (587%). Peak memory: 355908KB.

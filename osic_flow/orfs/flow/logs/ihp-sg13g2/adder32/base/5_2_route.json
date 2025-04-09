@@ -1,0 +1,22 @@
+{
+	"detailedroute__route__net": 408,
+	"detailedroute__route__net__special": 2,
+	"detailedroute__route__drc_errors__iter:0": 71,
+	"detailedroute__route__wirelength__iter:0": 8007,
+	"detailedroute__route__drc_errors__iter:1": 45,
+	"detailedroute__route__wirelength__iter:1": 7945,
+	"detailedroute__route__drc_errors__iter:2": 46,
+	"detailedroute__route__wirelength__iter:2": 7944,
+	"detailedroute__route__drc_errors__iter:3": 0,
+	"detailedroute__route__wirelength__iter:3": 7931,
+	"detailedroute__route__drc_errors": 0,
+	"detailedroute__route__wirelength": 7931,
+	"detailedroute__route__vias": 1854,
+	"detailedroute__route__vias__singlecut": 1854,
+	"detailedroute__route__vias__multicut": 0,
+	"detailedroute__antenna_diodes_count": -1,
+	"detailedroute__antenna__violating__nets": 0,
+	"detailedroute__antenna__violating__pins": 0,
+	"detailedroute__flow__warnings__count": 11,
+	"detailedroute__flow__errors__count": 0
+}

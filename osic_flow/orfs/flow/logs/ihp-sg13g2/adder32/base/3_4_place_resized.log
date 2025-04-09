@@ -1,0 +1,70 @@
+OpenROAD v2.0-19249-geafd19f93 
+Features included (+) or not (-): +GPU +GUI +Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 8 thread(s).
+Perform port buffering...
+[INFO RSZ-0027] Inserted 65 input buffers.
+[INFO RSZ-0028] Inserted 33 output buffers.
+Perform buffer insertion and gate resizing...
+repair_design -verbose -match_cell_footprint
+[INFO RSZ-0058] Using max wire length 16273um.
+Iteration |   Area    | Resized | Buffers | Nets repaired | Remaining
+---------------------------------------------------------------------
+        0 |     +0.0% |       0 |       0 |             0 |       408
+       10 |     +0.0% |       0 |       0 |             0 |       398
+       20 |     +0.0% |       0 |       0 |             0 |       388
+       30 |     +0.0% |       0 |       0 |             0 |       378
+       40 |     +0.0% |       0 |       0 |             0 |       368
+       50 |     +0.0% |       0 |       0 |             0 |       358
+       60 |     +0.0% |       0 |       0 |             0 |       348
+       70 |     +0.0% |       0 |       0 |             0 |       338
+       80 |     +0.0% |       0 |       0 |             0 |       328
+       90 |     +0.0% |       0 |       0 |             0 |       318
+      100 |     +0.0% |       0 |       0 |             0 |       308
+      110 |     +0.0% |       0 |       0 |             0 |       298
+      120 |     +0.0% |       0 |       0 |             0 |       288
+      130 |     +0.0% |       0 |       0 |             0 |       278
+      140 |     +0.0% |       0 |       0 |             0 |       268
+      150 |     +0.0% |       0 |       0 |             0 |       258
+      160 |     +0.0% |       0 |       0 |             0 |       248
+      170 |     +0.0% |       0 |       0 |             0 |       238
+      180 |     +0.0% |       0 |       0 |             0 |       228
+      190 |     +0.0% |       0 |       0 |             0 |       218
+      200 |     +0.0% |       0 |       0 |             0 |       208
+      210 |     +0.0% |       0 |       0 |             0 |       198
+      220 |     +0.0% |       0 |       0 |             0 |       188
+      230 |     +0.0% |       0 |       0 |             0 |       178
+      240 |     +0.0% |       0 |       0 |             0 |       168
+      250 |     +0.0% |       0 |       0 |             0 |       158
+      260 |     +0.0% |       0 |       0 |             0 |       148
+      270 |     +0.0% |       0 |       0 |             0 |       138
+      280 |     +0.0% |       0 |       0 |             0 |       128
+      290 |     +0.0% |       0 |       0 |             0 |       118
+      300 |     +0.0% |       0 |       0 |             0 |       108
+      310 |     +0.6% |       1 |       0 |             0 |        98
+      320 |     +0.6% |       1 |       0 |             0 |        88
+      330 |     +0.6% |       1 |       0 |             0 |        78
+      340 |     +2.2% |       4 |       0 |             0 |        68
+      350 |     +2.2% |       4 |       0 |             0 |        58
+      360 |     +2.2% |       4 |       0 |             0 |        48
+      370 |     +2.2% |       4 |       0 |             0 |        38
+      380 |     +2.2% |       4 |       0 |             0 |        28
+      390 |     +2.2% |       4 |       0 |             0 |        18
+      400 |     +2.2% |       4 |       0 |             0 |         8
+    final |     +2.2% |       4 |       0 |             0 |         0
+---------------------------------------------------------------------
+[INFO RSZ-0039] Resized 4 instances.
+Repair tie lo fanout...
+Repair tie hi fanout...
+Floating nets: 
+Report metrics stage 3, resizer...
+No registers in design
+
+==========================================================================
+resizer report_design_area
+--------------------------------------------------------------------------
+Design area 3286 u^2 55% utilization.
+Instance count before 245, after 343
+Pin count before 837, after 1033
+Elapsed time: 0:00.32[h:]min:sec. CPU time: user 0.19 sys 0.11 (96%). Peak memory: 293968KB.
