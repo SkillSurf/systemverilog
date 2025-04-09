@@ -1,0 +1,24 @@
+# shellcheck shell=bash
+# Switch to IHP SG13G2 PDK
+# The PDK name has been changed starting with 2025.01
+YEAR="${IIC_OSIC_TOOLS_VERSION%%.*}"
+if [[ "$YEAR" -ge 2025 ]]; then
+    export PDK=ihp-sg13g2
+else
+    export PDK=sg13g2
+fi
+export PDKPATH=$PDK_ROOT/$PDK
+export STD_CELL_LIBRARY=sg13g2_stdcell
+export SPICE_USERINIT_DIR=$PDKPATH/libs.tech/ngspice
+export KLAYOUT_PATH=$PDKPATH/libs.tech/klayout:$PDKPATH/libs.tech/klayout/tech
+
+# Set path for Xschem
+# export XSCHEM_USER_LIBRARY_PATH=$DESIGNS/SG13G2_ASIC-Design-Template/xschem
+
+# The NMOS symbols for the IHP PDK changed with version 2025.03
+YEARMONTH=${IIC_OSIC_TOOLS_VERSION//./} 
+if [[ $YEARMONTH -lt 202503 ]]; then
+    echo
+    echo "[WARNING] The default NMOS symbols changed with version 2025.03!"
+    echo "[WARNING] Please update your image to 2025.03 or later to use the new symbols."
+fi

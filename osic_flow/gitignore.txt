@@ -1,0 +1,3 @@
+/video
+/simulations
+/xschem/simulations
