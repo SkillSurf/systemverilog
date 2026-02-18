@@ -36,6 +36,7 @@ module alu_ip_tb();
     #(CLK_PERIOD*3);
     $fclose(file_in);
     $fclose(file_out);
+    $finish();
   end
 
   initial begin

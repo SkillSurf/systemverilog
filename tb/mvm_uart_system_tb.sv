@@ -66,6 +66,7 @@ module mvm_uart_system_tb;
   logic [BITS_PER_WORD-1  :0] m_packet;
   
   initial begin
+    wait (rstn);
     repeat (NUM_EXP) begin
       m_data <= 'x;
       for (int iw=0; iw<N_WORDS_Y; iw++) begin // get each word
@@ -81,7 +82,7 @@ module mvm_uart_system_tb;
 
         for (int ib=0; ib<PACKET_SIZE_TX-BITS_PER_WORD-1; ib=ib+1) begin
           repeat (CLOCKS_PER_PULSE) @(posedge clk);
-          assert (tx == 1) else $error("Incorrect end bits/padding");
+          if (tx != 1) $error("Incorrect end bits/padding");
         end
       end
 
@@ -96,9 +97,10 @@ module mvm_uart_system_tb;
       end
 
       // Compare
-      assert (exp_data == m_data)
+      if (exp_data == m_data)
         $display("Outputs match: %d", exp_data);
-      else $fatal(0, "Expected: %d != Output: %d", exp_data, m_data);
+      else
+        $error("Expected: %d != Output: %d", exp_data, m_data);
     end
     $finish();
   end
@@ -108,6 +110,7 @@ module mvm_uart_system_tb;
   int tx_bits, rx_bits;
   initial forever begin
     tx_bits = 0;
+    wait(rstn);
     wait(!tx);
     for (int n=0; n<PACKET_SIZE_TX; n++) begin
       tx_bits += 1;
@@ -124,4 +127,3 @@ module mvm_uart_system_tb;
   end
 
 endmodule
-

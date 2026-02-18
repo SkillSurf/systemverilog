@@ -48,6 +48,6 @@ module fir_filter_tb;
       assert (y==y_exp) begin 
         $display("OK: y:%d", y);
         $fdisplay(file_y, "%d", y);
-      end else $display("Error: y:%d != y_exp:%d", y, y_exp);
+      end else $error("y:%d != y_exp:%d", y, y_exp);
     end
 endmodule

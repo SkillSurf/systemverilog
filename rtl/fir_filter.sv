@@ -43,9 +43,9 @@ module fir_filter_2 #(
   for (n=0; n<N+1; n=n+1)
     assign m[n] = x * K[N-n];
 
-  assign a[0] = m[0];
+  assign a[0] = $signed(m[0]);
   for (n=1; n<N+1; n=n+1)
-    assign a[n] = m[n] + z[n-1];
+    assign a[n] = $signed(m[n]) + $signed(z[n-1]);
 
   for (n=0; n<N; n=n+1)
     always_ff @(posedge clk or negedge rstn)

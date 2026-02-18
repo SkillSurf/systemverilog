@@ -47,6 +47,7 @@ module uart_tx_tb;
   // Monitor
   initial forever begin
     rx_data <= 'x;
+    wait(rstn);
     for (int iw=0; iw<NUM_WORDS; iw=iw+1) begin
 
       wait(!tx);
@@ -60,11 +61,11 @@ module uart_tx_tb;
 
       for (int ib=0; ib<PACKET_SIZE-BITS_PER_WORD-1; ib=ib+1) begin
         repeat (CLOCKS_PER_PULSE) @(posedge clk);
-        assert (tx == 1) else $error("Incorrect end bits/padding");
+        if (tx != 1) $error("Incorrect end bits/padding");
       end
     end
 
-    assert (rx_data == s_data) $display("OK, %b", rx_data);
+    if (rx_data == s_data) $display("OK, %b", rx_data);
     else $error("Sent %b, got %b", s_data, rx_data);
   end
 
@@ -72,6 +73,7 @@ module uart_tx_tb;
   int bits;
   initial forever begin
     bits = 0;
+    wait(rstn);
     wait(!tx);
     for (int n=0; n<PACKET_SIZE; n++) begin
       bits += 1;
