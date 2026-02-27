@@ -24,6 +24,7 @@ jobs:
       matrix:
         tb:
           - full_adder_tb
+          - n_adder_tb
       fail-fast: false
 
     steps:

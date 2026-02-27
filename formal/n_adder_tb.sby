@@ -1,0 +1,17 @@
+[options]
+mode prove
+depth 1
+
+[engines]
+smtbmc
+
+[script]
+read -sv full_adder.sv
+read -sv n_adder.sv
+read -sv n_adder_tb.sv
+prep -top n_adder_tb
+
+[files]
+rtl/n_adder.sv
+rtl/full_adder.sv
+formal/n_adder_tb.sv
