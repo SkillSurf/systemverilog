@@ -9,7 +9,7 @@ module axis_matvec_mul_tb;
               CLK_PERIOD=10, NUM_EXP=500;
 
   logic clk=0, rstn=0;
-  initial forever #(CLK_PERIOD/2) clk <= ~clk;
+  initial forever #(CLK_PERIOD/2) clk = ~clk;
 
   logic s_ready, s_valid, m_ready, m_valid;
 
@@ -38,10 +38,10 @@ module axis_matvec_mul_tb;
     repeat(NUM_EXP) begin
       // Randomize in_data
       foreach (x_in[c]) 
-        x_in[c] = $urandom_range(0,2**W_X-1);
+        x_in[c] = W_X'($urandom_range(0,2**W_X-1));
       foreach (k_in[r]) begin
         foreach (k_row_in[c])
-          k_row_in[c] = $urandom_range(0,2**W_K-1);
+          k_row_in[c] = W_K'($urandom_range(0,2**W_K-1));
         k_in[r] = k_row_in;
       end
 

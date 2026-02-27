@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 module function_lut #(
   parameter W_X=4, W_Y=8,
   parameter signed A= 1, B= 10, C= -10
@@ -27,7 +29,7 @@ module function_lut #(
     int error, min_error = 2**W_Y;
 
     for (int ux=0; ux<2**W_X; ux++) begin
-      logic signed [W_X-1:0] x = ux; // signed cast
+      logic signed [W_X-1:0] x = W_X'(ux); // signed cast
       quad = quadratic(x);
 
       error = (y - quad);
@@ -38,8 +40,8 @@ module function_lut #(
         result = x;
       end
     end
-    return result;
-  endfunction 
+    return W_X'(result);
+  endfunction
 
   // LUT Generation
   genvar i;

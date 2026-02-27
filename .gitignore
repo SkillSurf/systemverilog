@@ -1,2 +1,5 @@
 vivado
 *.vcd
+build
+osic_flow/orfs/flow/logs/
+*.log

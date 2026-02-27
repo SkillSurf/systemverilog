@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 module alu_ip (
   input  logic       clk,
   input  logic [2:0] sel,

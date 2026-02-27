@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 /*
   This code describes a full_adder circuit
 */
@@ -17,11 +19,4 @@ module full_adder (
     sum    = wire_1 ^ ci  ;    // bitwise XOR
   end
 
-endmodule
-
-module full_adder_2 (
-  input  logic a, b, ci,
-  output logic sum, co
-);
-  assign {co, sum} = a + b + ci;
 endmodule

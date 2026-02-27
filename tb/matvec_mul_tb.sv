@@ -14,7 +14,7 @@ module matvec_mul_tb;
   logic signed        [R-1:0][W_Y -1:0] y, y_exp;
 
   matvec_mul #(.R(R), .C(C), .W_X(W_X), .W_K(W_K)) dut (.*);
-  initial forever #(CLK_PERIOD/2) clk <= ~clk;
+  initial forever #(CLK_PERIOD/2) clk = ~clk;
 
   initial begin
     $dumpfile("dump.vcd"); $dumpvars(0, dut);
@@ -25,8 +25,8 @@ module matvec_mul_tb;
 
       for(int r=0; r<R; r++) begin
         for(int c=0; c<C; c++) begin
-            x    [c] = $urandom_range(0, 2**W_X-1);
-            k_row[c] = $urandom_range(0, 2**W_K-1);
+            x    [c] = W_X'($urandom_range(0, 2**W_X-1));
+            k_row[c] = W_K'($urandom_range(0, 2**W_K-1));
         end
         k[r] = k_row;
       end

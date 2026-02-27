@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 module p2s #(N = 8)
 (
   input  logic clk, rstn, ser_ready, par_valid, 
@@ -15,14 +17,14 @@ module p2s #(N = 8)
       TX: next_state = ser_ready && count==N-1 ? RX : TX;
     endcase
 
-  always_ff @(posedge clk or negedge rstn)
+  always_ff @(posedge clk)
     state <= !rstn ? RX : next_state;
 
   assign ser_data  = shift_reg[0];
   assign par_ready = (state == RX);
   assign ser_valid = (state == TX);
 
-  always_ff @(posedge clk or negedge rstn)
+  always_ff @(posedge clk)
     if (!rstn) count    <= '0;
     else 
       unique case (state)

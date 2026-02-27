@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 module matvec_mul #(
     parameter R=8, C=8, W_X=8, W_K=8,
     localparam DEPTH = $clog2(C),
@@ -14,6 +16,7 @@ module matvec_mul #(
   localparam C_PAD = 2**$clog2(C);
   logic signed [W_Y-1:0] tree [R][DEPTH+1][C_PAD]; // adder tree
 
+  /* verilator lint_off WIDTHTRUNC */
   wire signed        [C_PAD-1:0][W_X-1:0] x_pad = {'0, x};
   wire signed [R-1:0][C_PAD-1:0][W_K-1:0] k_pad;      
 

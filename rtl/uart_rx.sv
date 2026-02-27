@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 module uart_rx #(
   parameter CLOCKS_PER_PULSE = 4, //200_000_000/9600
             BITS_PER_WORD    = 8,
@@ -19,7 +21,7 @@ module uart_rx #(
 
   enum {IDLE, START, DATA, END} state;
 
-  always_ff @(posedge clk or negedge rstn) begin
+  always_ff @(posedge clk) begin
     
     if (!rstn) begin
       {c_words, c_bits, c_clocks, m_valid, m_data} <= '0;

@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 module example (
     input  logic clk,a,b,
     output logic c,

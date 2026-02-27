@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 module uart_tx #(
   parameter   CLOCKS_PER_PULSE = 4, //200_000_000/9600
               BITS_PER_WORD    = 8,
@@ -28,7 +30,7 @@ module uart_tx #(
 
   enum {IDLE, SEND} state;
 
-  always_ff @(posedge clk or negedge rstn) begin
+  always_ff @(posedge clk) begin
 
     if (!rstn) begin
       state     <= IDLE;

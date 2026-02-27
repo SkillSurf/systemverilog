@@ -21,7 +21,7 @@ This repository contains the examples for the short course: [SystemVerilog for A
 ---
 
 
-The examples given in this repo have been tested on Xilinx Vivado and Synopsys DesignCompiler. Full system, AXI Stream system and their submodules have been tested on Icarus Verilog as well.  
+The examples given in this repo have been tested on Xilinx Vivado and Synopsys DesignCompiler. Full system, AXI Stream system and their submodules have been tested on Verilator as well.  
 
 ## Full System: Matrix Vector Multiplier (AXI-Stream) with UART Interface
 
@@ -48,9 +48,9 @@ dc_shell -f ../run_dc.tcl
 - **`mvm_uart_system_tb.sv`**: Randomize `k` & `x`, drives TX & monitors RX in parallel, asserts `y_exp==exp`
   - **`mvm_uart_system.v`**: Top module
   
-To test the full system with Icarus Verilog:
-```
-iverilog -g2012 -o compiled rtl/mvm_uart_system.v rtl/uart_rx.sv rtl/uart_tx.sv rtl/axis_matvec_mul.v rtl/matvec_mul.sv rtl/skid_buffer.sv tb/mvm_uart_system_tb.sv tb/simple_axis_tb.sv && vvp compiled
+To test the full system with verilator:
+```bash
+make test TB=mvm_uart_system_tb
 ```
   
 ## AXI-Stream IP: Matrix Vector Multiplier
@@ -66,9 +66,9 @@ iverilog -g2012 -o compiled rtl/mvm_uart_system.v rtl/uart_rx.sv rtl/uart_tx.sv 
     - `AXIS_Source`: parametrized module with task `axis_push` to send a packet with `N_BEATS` on a bus with `W_BUS` width, while randomly toggling `s_valid` with given probability
     - `AXIS_Sink`: parametrized module with task `axis_pull` to receive a packet with `N_BEATS` from a bus with `W_BUS` width, while randomly toggling `m_ready` with given probability 
 
-To test the AXI Stream IP with Icarus Verilog:
-```
-iverilog -g2012 -o compiled rtl/axis_matvec_mul.v rtl/matvec_mul.sv rtl/skid_buffer.sv tb/axis_matvec_mul_tb.sv tb/simple_axis_tb.sv && vvp compiled
+To test the AXI Stream IP with verilator:
+```bash
+make test TB=axis_matvec_mul_tb
 ```
 
 ---

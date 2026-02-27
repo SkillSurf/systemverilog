@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 module alu #(
   parameter  WIDTH     = 8,
   localparam W_ALU_SEL = 3

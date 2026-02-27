@@ -6,13 +6,14 @@ module uart_tx_tb;
               BITS_PER_WORD    = 8,
               PACKET_SIZE      = BITS_PER_WORD+5,
               NUM_WORDS        = W_OUT/BITS_PER_WORD,
+              DATA_WIDTH       = NUM_WORDS*BITS_PER_WORD,
               CLK_PERIOD       = 10;
 
   logic clk=0, rstn=0, tx, s_valid=0, s_ready;
   logic [NUM_WORDS-1:0][BITS_PER_WORD-1:0] s_data, rx_data;
   logic [BITS_PER_WORD-1:0] rx_word;
 
-  initial forever #(CLK_PERIOD/2) clk <= !clk;
+  initial forever #(CLK_PERIOD/2) clk = !clk;
 
   uart_tx #(
     .CLOCKS_PER_PULSE(CLOCKS_PER_PULSE), 
@@ -33,7 +34,7 @@ module uart_tx_tb;
       wait (s_ready);
 
       @(posedge clk) #1;
-      s_data = $urandom();
+      s_data = DATA_WIDTH'($urandom());
       s_valid = 1;
       
       @(posedge clk) #1;
@@ -46,7 +47,7 @@ module uart_tx_tb;
 
   // Monitor
   initial forever begin
-    rx_data <= 'x;
+    rx_data = 'x;
     wait(rstn);
     for (int iw=0; iw<NUM_WORDS; iw=iw+1) begin
 

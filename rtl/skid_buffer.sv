@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 module skid_buffer #(parameter WIDTH = 8)(
   input  logic clk, rstn, s_valid, m_ready,
   input  logic [WIDTH-1:0] s_data,

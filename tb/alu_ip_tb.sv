@@ -6,7 +6,7 @@ module alu_ip_tb();
   localparam CLK_PERIOD = 10;
   initial begin
     clk = 0;
-    forever #(CLK_PERIOD/2) clk <= ~clk;
+    forever #(CLK_PERIOD/2) clk = ~clk;
   end
 
   logic        [2:0] sel;

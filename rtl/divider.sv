@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 module divider #(parameter FREQ = 8)
 (
 	input  logic board_clk,

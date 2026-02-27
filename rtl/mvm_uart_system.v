@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 
 module mvm_uart_system #(
   parameter CLOCKS_PER_PULSE = 200_000_000/9600, //200_000_000/9600

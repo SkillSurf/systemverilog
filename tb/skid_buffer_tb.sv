@@ -1,6 +1,6 @@
 `timescale 1ns/1ps
 
-module axis_skid_buffer_tb;
+module skid_buffer_tb;
 
   localparam  WORD_W=8, BUS_W=8,
               N_BEATS=10, WORDS_PER_BEAT=BUS_W/WORD_W,
@@ -28,13 +28,13 @@ module axis_skid_buffer_tb;
     $dumpfile ("dump.vcd"); $dumpvars;
     rstn = 0;
     repeat(5) @(posedge clk);
-    rstn <= 1;
+    rstn = 1;
     repeat(5) @(posedge clk);
 
     // initialize reference data beat
     foreach (tx_packet[n]) begin
       foreach (in_beat[w])
-        in_beat[w] = $urandom_range(0,2**WORD_W-1);
+        in_beat[w] = WORD_W'($urandom_range(0,2**WORD_W-1));
       tx_packet[n] = in_beat;
     end
     

@@ -28,7 +28,7 @@ module matvec_mul_tb;
 
   logic clk=0, cen=1;
   localparam CLK_PERIOD = 10;
-  initial forever #(CLK_PERIOD/2) clk <= ~clk;
+  initial forever #(CLK_PERIOD/2) clk = ~clk;
 
   localparam R=1, C=8, W_X=3, W_K=4;
   localparam DEPTH = $clog2(C),
@@ -76,15 +76,15 @@ module matvec_mul_tb;
     @(posedge clk);
     for (int r=0; r<R; r++)
       for (int c=0; c<C; c++) begin
-        km.data[r][c] <= 10*r + c;
-        xm.data[c][0] <= 1;
+        km.data[r][c] = 10*r + c;
+        xm.data[c][0] = 1;
       end
     drive_wait_assert;
 
     @(posedge clk);
     foreach(km.data[r,c]) begin
-      km.data[r][c] <= 10*r + c;
-      xm.data[c][0] <= 1;
+      km.data[r][c] = 10*r + c;
+      xm.data[c][0] = 1;
     end
     drive_wait_assert;
 

@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 module axis_matvec_mul #(
     parameter R=8, C=8, W_X=8, W_K=8,
               LATENCY = $clog2(C)+1,
@@ -31,7 +33,7 @@ module axis_matvec_mul #(
     reg [LATENCY-2:0] shift;
     reg  i_valid;
 
-    always @(posedge clk or negedge rstn)
+    always @(posedge clk)
       if     (!rstn)   {i_valid, shift} <= 0;
       else if(i_ready) {i_valid, shift} <= {shift, s_axis_kx_tvalid};
 

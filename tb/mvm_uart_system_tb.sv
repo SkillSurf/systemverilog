@@ -5,7 +5,6 @@ module mvm_uart_system_tb;
               W_Y_OUT          = 32,
               CLOCKS_PER_PULSE = 4, //200_000_000/9600,
               BITS_PER_WORD    = 8,
-              W_Y              = W_X + W_K + $clog2(C),
               W_BUS_KX         = R*C*W_K + C*W_X,
               W_BUS_Y          = R*W_Y_OUT,
               N_WORDS_KX       = W_BUS_KX/BITS_PER_WORD,
@@ -15,7 +14,7 @@ module mvm_uart_system_tb;
               NUM_EXP          = 10;
 
   logic clk=0, rstn=0, rx=1, tx;
-  initial forever #(CLK_PERIOD/2) clk <= !clk;
+  initial forever #(CLK_PERIOD/2) clk = !clk;
 
   mvm_uart_system #(
     .CLOCKS_PER_PULSE (CLOCKS_PER_PULSE), //200_000_000/9600
@@ -40,14 +39,14 @@ module mvm_uart_system_tb;
 
     repeat (NUM_EXP) begin
       for (int iw=0; iw<N_WORDS_KX; iw++) begin
-        s_data[iw] = $urandom_range(2**BITS_PER_WORD-1);
+        s_data[iw] = BITS_PER_WORD'($urandom_range(2**BITS_PER_WORD-1));
         s_packet = {1'b1, s_data[iw], 1'b0};
 
         repeat ($urandom_range(1,20)) @(posedge clk);
 
         for (int ib=0; ib<BITS_PER_WORD+2; ib++)
           repeat(CLOCKS_PER_PULSE) begin 
-            #1 rx <= s_packet[ib];
+            #1 rx = s_packet[ib];
             @(posedge clk);
           end
       end
@@ -68,7 +67,7 @@ module mvm_uart_system_tb;
   initial begin
     wait (rstn);
     repeat (NUM_EXP) begin
-      m_data <= 'x;
+      m_data = 'x;
       for (int iw=0; iw<N_WORDS_Y; iw++) begin // get each word
 
         wait(!tx);

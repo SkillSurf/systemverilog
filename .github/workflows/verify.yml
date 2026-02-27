@@ -1,18 +1,18 @@
-
 name: Verify
 
 on: [push]
 
 jobs:
-  verify-with-icarus:
+  verify-with-oss-cad-suite:
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
 
-    - name: Install Icarus
-      run: |
-        sudo apt install -y --no-install-recommends iverilog
+    - name: Get OSS CAD Suite
+      uses: YosysHQ/setup-oss-cad-suite@v3
+      with:
+        python-override: true
 
     - name: Verify Full System
       run: make all

@@ -11,18 +11,18 @@ module example_tb;
     clk = 0;
     forever 
       #(CLK_PERIOD/2) 
-      clk <= ~clk;
+      clk = ~clk;
   end
   
   initial begin
     $dumpfile("dump.vcd"); 
     $dumpvars;
     @(posedge clk);
-    #1 a <= 1; b <= 1;
+    #1 a = 1; b = 1;
     @(posedge clk);
-    #1 a <= 0; b <= 1;
+    #1 a = 0; b = 1;
     @(posedge clk);
-    #1 a <= 1; b <= 1;
+    #1 a = 1; b = 1;
     @(posedge clk);
     $finish();
   end
