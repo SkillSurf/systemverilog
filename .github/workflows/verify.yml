@@ -16,3 +16,23 @@ jobs:
 
     - name: Verify Full System
       run: make all
+      
+  formal-with-oss-cad-suite:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        tb:
+          - full_adder_tb
+      fail-fast: false
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Get OSS CAD Suite
+      uses: YosysHQ/setup-oss-cad-suite@v3
+      with:
+        python-override: true
+
+    - name: Formal Verify ${{ matrix.tb }}
+      run: make formal TB=${{ matrix.tb }}

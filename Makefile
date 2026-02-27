@@ -48,7 +48,7 @@ TBS := \
 	uart_tx_tb
 
 
-.PHONY: test all clean
+.PHONY: test all clean formal
 
 # Run one TB (compile ALL IPs + this TB + simple_axis_vip)
 # Example:
@@ -72,6 +72,9 @@ all:
 			TB="$$tb" \
 			TB_FILE="tb/$$tb.sv"; \
 	done
+
+formal:
+	sby -f formal/$(TB).sby -d build/formal/$(TB)
 
 clean:
 	rm -rf build obj_dir
