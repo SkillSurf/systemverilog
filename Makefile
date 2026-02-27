@@ -48,7 +48,7 @@ TBS := \
 	uart_tx_tb
 
 
-.PHONY: test all clean formal
+.PHONY: test all clean formal qverify
 
 # Run one TB (compile ALL IPs + this TB + simple_axis_vip)
 # Example:
@@ -75,6 +75,9 @@ all:
 
 formal:
 	sby -f formal/$(TB).sby -d build/formal/$(TB)
+
+qverify:
+	qverify -c -od build/qverify/$(TB) -do formal/$(TB).tcl
 
 clean:
 	rm -rf build obj_dir

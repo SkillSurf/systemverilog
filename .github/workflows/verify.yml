@@ -25,6 +25,8 @@ jobs:
         tb:
           - full_adder_tb
           - n_adder_tb
+          - alu_tb
+          - counter_tb
       fail-fast: false
 
     steps:

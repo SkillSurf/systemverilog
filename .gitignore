@@ -3,3 +3,4 @@ vivado
 build
 osic_flow/orfs/flow/logs/
 *.log
+work

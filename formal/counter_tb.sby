@@ -1,0 +1,15 @@
+[options]
+mode prove
+depth 10
+
+[engines]
+smtbmc
+
+[script]
+read -sv counter.sv
+read -sv -DSBY counter_tb.sv
+prep -top counter_tb
+
+[files]
+rtl/counter.sv
+formal/counter_tb.sv
